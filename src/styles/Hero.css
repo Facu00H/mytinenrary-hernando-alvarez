@@ -1,6 +1,6 @@
 .header{
   width: 100%;
-  height:100%;
+  height:100vh;
   background-image:url('https://cdn.pixabay.com/photo/2017/01/20/00/30/maldives-1993704_960_720.jpg');
   background-repeat: no-repeat;
   background-position:center;
@@ -9,21 +9,22 @@
   flex-direction: column;
   justify-content:center;
   align-items:center;
-  gap:3rem;
+  gap:1rem;
 }
 
 .header-title{
-  font-size:7rem;
+  font-size:2rem;
   font-weight:bold;
   background-color:white;
-  border: 1rem solid black;
+  border: 0.6rem solid black;
   padding: 0 1rem;
 }
 
 .header-p{
   font-size:1.5rem;
+  width:70%;
   background-color:white;
-  padding: 0.1rem 1rem;
+  padding: 1rem;
   border: 0.3rem solid black;
 }
 
@@ -33,10 +34,25 @@
   padding: 0.1rem 1rem;
   border: 0.3rem solid black;
   border-radius:1rem;
-  transition: all 0.3s ease
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
 
 .header-btn:hover{
   background-color: #38bdf8
 }
+
+
+@media (min-width:450px) {
+  .header-title{
+    font-size:4rem;
+  }
+}
+
+@media (min-width:760px){
+  .header-title{
+    font-size:6rem;
+  }
+}
+
 
