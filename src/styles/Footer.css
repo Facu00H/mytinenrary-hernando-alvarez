@@ -1,0 +1,21 @@
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgb(207, 205, 205);
+    padding: 25px 0;
+}
+
+.footer-socialNetworks {
+    display: flex;
+    align-items: center;
+    width: 70px;
+    justify-content: space-between;
+}
+
+@media (max-width: 425px) {
+    .footer-container {
+        flex-direction: column;
+        height: 200px;
+    }
+}
