@@ -1,12 +1,12 @@
 import './App.css';
-import Hero from './components/Hero'
-import Footer from './components/Footer';
+import WebsiteLayout from './layouts/WebsiteLayout';
+import Hero from './components/Hero';
 
 function App() {
   return (
     <div>
       <Hero />
-      <Footer />
+      <WebsiteLayout />
     </div>
   );
 }
