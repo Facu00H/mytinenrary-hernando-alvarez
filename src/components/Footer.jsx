@@ -12,8 +12,8 @@ export default function Footer() {
                     <h3>MyTinerary</h3>
                 </div>
                 <div className='footer-socialNetworks'>
-                    <a href="https://www.facebook.com/"><img src="./assets/img/facebook_icon.png"/></a>
-                    <a href="https://www.instagram.com/"><img src="./assets/img/instagram_icon.png"/></a>
+                    <a href="https://www.facebook.com/"><img src="/assets/img/facebook_icon.png" alt=""/></a>
+                    <a href="https://www.instagram.com/"><img src="/assets/img/instagram_icon.png" alt=""/></a>
                 </div>
             </footer>
         </>
