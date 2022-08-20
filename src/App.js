@@ -4,7 +4,7 @@ import Footer from './components/Footer';
 
 function App() {
   return (
-    <div className="container-auto h-screen mx-auto">
+    <div>
       <Hero />
       <Footer />
     </div>
