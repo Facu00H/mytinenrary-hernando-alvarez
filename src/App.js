@@ -1,12 +1,12 @@
 import './App.css';
-import Hero from './components/Hero'
-import Footer from './components/Footer';
+import WebsiteLayout from './layouts/WebsiteLayout';
+import Hero from './components/Hero';
 
 function App() {
   return (
-    <div className="container-auto h-screen mx-auto">
+    <div>
       <Hero />
-      <Footer />
+      <WebsiteLayout />
     </div>
   );
 }

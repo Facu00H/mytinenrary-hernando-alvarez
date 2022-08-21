@@ -1,0 +1,20 @@
+.slide {
+    display: flex;
+    flex-wrap: wrap;
+    min-width: 90%;
+    margin: auto;
+    padding: 20px;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.citiesImgs {
+    width: 550px;
+    height: 320px;
+}
+
+.citiesName {
+    text-align: center;
+    font-size: 18px;
+}
