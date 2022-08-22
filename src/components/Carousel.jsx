@@ -31,8 +31,11 @@ export default function Carousel() {
 
   return (
     <>
-      <div className="slide">
-        {items.slice(start, end).map(itemView)}
+      <div className="slide-container">
+        <h1>Popular MYtineraries</h1>
+        <div className="slide">
+          {items.slice(start, end).map(itemView)}
+        </div>
       </div>
     </>
   )
