@@ -4,8 +4,7 @@
     height: 10vh;
     justify-content: space-around;
     align-items: center;
-    background-color: rgb(207, 205, 205);
-    padding: 25px 0;
+    background-color: rgba(129, 129, 129, 0.233);
 }
 
 .footer-socialNetworks {
