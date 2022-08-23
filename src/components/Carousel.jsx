@@ -64,22 +64,30 @@ export default function Carousel() {
 
   const itemView = (item) => (
     <div className="item">
-      
-      <img className="citiesImgs" src={item.url} alt="" />
-      <p className="citiesName">{item.title}</p>
-      
+        <img className="citiesImgs" src={item.url} alt="" />
+        <p className="citiesName">{item.title}</p>
     </div>
   )
 
   return (
     <>
       <div className="slide-container">
-        <h1>Popular MYtineraries</h1>
-        <Arrow icon="<" click={previus} />
+        <div className="slide-title">
+          <h1>Popular MYtineraries</h1>
+        </div>
+        <div className="slide-arrow1">
+          <Arrow click={previus}>
+            <input className="arrow-img" type="image" src="https://cdn-icons-png.flaticon.com/512/271/271220.png" alt="Left arrow"></input>
+          </Arrow>
+        </div>
         <div className="slide">
           {items.slice(getStart, getEnd).map(itemView)}
         </div>
-        <Arrow icon=">" click={next} />
+        <div className="slide-arrow2">
+          <Arrow click={next}>
+            <input className="arrow-img" type="image" src="https://cdn-icons-png.flaticon.com/512/271/271228.png" alt="Right arrow"></input>
+          </Arrow>
+        </div>
       </div>
     </>
   )
