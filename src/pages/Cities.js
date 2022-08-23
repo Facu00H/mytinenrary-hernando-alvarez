@@ -1,13 +1,15 @@
 import React from 'react';
 import WebsiteLayout from "../layouts/WebsiteLayout";
-import UnderConstruction from "../components/UnderConstruction";
+// import UnderConstruction from "../components/UnderConstruction";
+import Carousel from ".././components/Carousel"
 
 function Cities() {
     return (
-      <div>
-        <UnderConstruction />
-        <WebsiteLayout />
-      </div>
+      <>
+        <WebsiteLayout>
+          <Carousel/>
+        </WebsiteLayout>
+      </>
     );
   }
   
