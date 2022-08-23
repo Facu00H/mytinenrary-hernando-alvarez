@@ -1,11 +1,9 @@
 import React from 'react'
-import '../styles/Carousel.css'
+import '../styles/Carousel.css';
+import Arrow from './Arrow';
+import { useEffect,useState } from 'react';
 
 export default function Carousel() {
-
-  const range = 4
-  const start = 0
-  const end = start + range
 
   const items = [
     {url: 'https://viajes.nationalgeographic.com.es/medio/2017/05/19/hong-kong_7ca23c6a.jpg', title: 'Hong Kong'},
@@ -20,12 +18,51 @@ export default function Carousel() {
     {url: 'https://viajes.nationalgeographic.com.es/medio/2017/05/19/roma_370225de.jpg', title: 'Rome'},
     {url: 'https://viajes.nationalgeographic.com.es/medio/2017/05/19/taipei_13720ebe.jpg', title: 'Taipei'},
     {url: 'https://viajes.nationalgeographic.com.es/medio/2017/05/19/tokio_b3218026.jpg', title: 'Tokyo'},
-  ]
+  ];
+
+  const range = 4
+  const [getStart, setStart] = useState(0)
+  const [getEnd, setEnd] = useState(getStart + range);
+  const [intervalId, setIntervalId] = useState();
+
+  function previus(){
+    if(getStart >= range){
+      setStart( getStart - range );
+      setEnd( getEnd - range );
+    }
+  }
+
+  function next(){
+    if(getEnd < items.length){
+      setStart( getStart + range );
+      setEnd( getEnd + range );
+    }else{
+      setStart(0);
+      setEnd(range)
+    }
+  }
+
+
+  useEffect(() => {
+    let id = setInterval( function(){ 
+      next();
+    }, 3000)
+
+    setIntervalId(id)
+    console.log(intervalId)
+
+    return () => clearInterval(intervalId);
+  },[getStart]);
+  
+
+
 
   const itemView = (item) => (
     <div className="item">
+      
       <img className="citiesImgs" src={item.url} alt="" />
       <p className="citiesName">{item.title}</p>
+      
     </div>
   )
 
@@ -33,9 +70,11 @@ export default function Carousel() {
     <>
       <div className="slide-container">
         <h1>Popular MYtineraries</h1>
+        <Arrow icon="<" click={previus} />
         <div className="slide">
-          {items.slice(start, end).map(itemView)}
+          {items.slice(getStart, getEnd).map(itemView)}
         </div>
+        <Arrow icon=">" click={next} />
       </div>
     </>
   )
