@@ -29,7 +29,11 @@ export default function Carousel() {
     if(getStart >= range){
       setStart( getStart - range );
       setEnd( getEnd - range );
+    }else{
+      setEnd(items.length);
+      setStart(items.length - range);
     }
+    clearInterval(intervalId);
   }
 
   function next(){
@@ -40,6 +44,7 @@ export default function Carousel() {
       setStart(0);
       setEnd(range)
     }
+    clearInterval(intervalId);
   }
 
 
