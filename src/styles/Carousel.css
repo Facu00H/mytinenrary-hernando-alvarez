@@ -13,16 +13,107 @@
 
 .slide {
     display: grid;
-    width: 65%;
+    width: 90%;
     grid-template-columns: 50% 50%;
     gap: 10px;
 }
 
 .citiesImgs {
-    width: 90%;
-    height: 90%;
+    width: 100%;
+    height: 100%;
 }
 
 .citiesName {
     text-align: center;
+}
+
+.slide-arrow1, .slide-arrow2{
+    display: none;
+}
+
+.citiesName{
+    font-weight:bold;
+}
+
+
+@media (min-width: 1024px) {
+
+    .slide-container {
+        display: grid;
+        grid-template-columns: 0.2fr repeat(2, 1fr) 0.2fr;
+        grid-template-rows: 0.2fr repeat(2, 1fr);
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+        margin: auto;
+        width:70%
+    }
+
+    .slide-title { grid-area: 1 / 1 / 2 / 5; }
+    .slide-arrow1 { grid-area: 2 / 1 / 5 / 2; }
+    .slide-arrow2 { grid-area: 2 / 4 / 5 / 5; }
+    .slide { grid-area: 2 / 2 / 4 / 4; }
+
+    .arrow-container{
+        width:100%;
+        height: 100%;
+        display: flex;
+        justify-content:center;
+        align-items:center;
+        cursor: pointer;
+        background-color:white;
+        border: 0.5px solid black;
+    }
+
+    .slide-title{
+        display: flex;
+        justify-content:center;
+        align-items:center;
+    }
+
+    .slide-arrow1, .slide-arrow2{
+        width:100%;
+        height:100%;
+        background-color:yellow;
+        display: flex;
+        justify-content:center;
+    }
+
+    .arrow-img{
+        height: 40px;
+    }
+
+    .item {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        flex-direction: column;
+        margin:auto;
+    }
+
+    .slide {
+        display: grid;
+        width: 100%;
+        grid-template-columns: 50% 50%;
+        gap: 10px;
+    }
+
+    .citiesImgs {
+        width: 90%;
+        height: 300px;
+        position:relative;
+    }
+
+    .citiesName {
+        text-align: center;
+        position: relative;
+        height:2rem;
+        display: flex;
+        width: 90%;
+        justify-content:center;
+        align-items:center;
+        font-size:1.2rem;
+        font-weight:bold;
+    }
+
 }
