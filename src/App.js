@@ -1,14 +1,19 @@
 import './App.css';
-import Hero from './components/Hero';
-import Carousel from './components/Carousel';
-import WebsiteLayout from './layouts/WebsiteLayout';
+import Welcome from './pages/Welcome'
+import Cities from './pages/Cities'
+import NewCity from './pages/NewCity'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 function App() {
   return (
     <div>
-      <Hero />
-      <Carousel />
-      <WebsiteLayout />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Welcome/>} />
+          <Route path="/cities" element={<Cities/>} />
+          <Route path="/newcity" element={<NewCity/>} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
