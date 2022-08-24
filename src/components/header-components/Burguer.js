@@ -15,8 +15,14 @@ export default function Burguer() {
       setNavState(false)
       setBtnState("items-container hidden")
     }
-    console.log(getNavState)
   }
+
+  window.addEventListener('click', e => {
+    if(!document.getElementById('burguer').contains(e.target)){
+      setNavState(false)
+      setBtnState("items-container hidden")
+    }
+  })
 
 
   const navItems = [
@@ -33,7 +39,7 @@ export default function Burguer() {
   )
 
   return (
-      <div className='navegation'>
+      <div className='navegation' id='burguer'>
         <div className="burguer" onClick={changeState}>
           <img src="https://cdn-icons-png.flaticon.com/512/2976/2976215.png" alt="Menu button" className="imgBurguer"/>
         </div>
