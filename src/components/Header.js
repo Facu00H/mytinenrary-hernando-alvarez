@@ -1,6 +1,6 @@
 import React from 'react';
 import '../styles/Header.css'
-import Burguer from '../components/Header-components/Burguer'
+import Burguer from '../components/header-components/Burguer'
 
 
 const Header = () => {
