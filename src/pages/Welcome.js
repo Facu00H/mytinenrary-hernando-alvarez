@@ -8,7 +8,6 @@ export default function Welcome() {
     <>
         <Hero/>
         <Carousel/>
-        <Footer/>
     </>
   )
 }
