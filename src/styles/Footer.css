@@ -1,6 +1,7 @@
 .footer-container {
     width: 100%;
-    background-color: #eeeeee;
+    min-height: 10vh;
+    background-color: #E2E2E2;
 }
 
 .footer-container-child {
@@ -41,17 +42,30 @@
     padding: 10px 0;
 }
 
-.footer-page-title {
+.footer-page-logo {
     display: flex;
-    align-items: center;
+}
+
+.footer-logo {
+    width: 150px;
 }
 
 .footer-menu-navigator {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     min-height: 100px;
     max-height: 100px;
+}
+
+.navigation-links {
+    color: #5f5e5e;
+    transition: 0.3s;
+}
+
+.navigation-links:hover {
+    color: #000000;
+    transition: 0.3s;
 }
 
 .footer-contact {
@@ -86,7 +100,7 @@
 }
 
 .footer-copyright {
-    background-color: #f9f9f9;
+    background-color: #c7c7c7;
     text-align: center;
     padding: 15px 0;
 }
