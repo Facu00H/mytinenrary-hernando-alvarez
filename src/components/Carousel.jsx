@@ -2,7 +2,7 @@ import React from 'react'
 import '../styles/Carousel.css';
 import Arrow from './Arrow';
 import { useEffect,useState } from 'react';
- carousimport { items } from '../data/ArrayCiudades'
+import { items } from '../data/ArrayCiudades'
 
 export default function Carousel() {
 
