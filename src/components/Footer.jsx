@@ -14,12 +14,11 @@ export default function Footer() {
     }
 
     const pages = [
-        {name: 'Home', URL: '/'},
         {name: 'Cities', URL: '/cities'},
         {name: 'New City', URL: '/newcity'},
     ]
 
-    const link = (pages) => <LinkRouter to={pages.URL}>{pages.name}</LinkRouter>
+    const link = (pages) => <LinkRouter to={pages.URL} className='navigation-links'>{pages.name}</LinkRouter>
 
     return (
         <>
@@ -39,8 +38,8 @@ export default function Footer() {
                         </div>
                     </div>
                     <div className="footer-title-menuNavigator-contact">
-                        <div className="footer-page-title">
-                            <h2>Mytinerary</h2>
+                        <div className="footer-page-logo">
+                            <img className='footer-logo' src="/assets/img/logo.png" alt="" />
                         </div>
                         <div className='footer-menu-navigator'>
                             <h4>Navigation</h4>

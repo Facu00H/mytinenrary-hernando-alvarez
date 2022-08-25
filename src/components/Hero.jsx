@@ -6,8 +6,8 @@ import {Link as LinkRouter} from 'react-router-dom'
 const Hero = () => {
   return (
     <header className="header" Style="">
-      <h1 className="header-title">MyTinerary</h1>
-      <p className="header-p">Find your perfect trip, designed by insiders who know and love their cities!</p>
+      <img className='logo' src="/assets/img/logo.png" alt="MyTinerary logo" />
+      <h1 className='hero-title'>MyTinerary</h1>
       <LinkRouter to="/cities" className="header-btn">ENTER</LinkRouter>
     </header>
   );

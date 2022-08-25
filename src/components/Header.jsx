@@ -8,7 +8,7 @@ const Header = () => {
   return (
     <div className="nav">
       <Burguer/>
-      <h1>MyTinerary</h1>
+      <img className='nav-logo' src="/assets/img/nav_logo.png" alt="Nav logo" />
       <div className="userImg">
         <img className="userImg" src='https://icon-library.com/images/generic-user-icon/generic-user-icon-19.jpg' alt="User Profile"/>  
       </div>

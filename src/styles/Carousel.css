@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
     gap: 10px;
-    padding: 20px 0;
+    padding: 2em 0;
 }
 
 .item {
@@ -55,14 +55,11 @@
     .slide { grid-area: 2 / 2 / 4 / 4; }
 
     .arrow-container{
-        width:100%;
-        height: 100%;
-        display: flex;
-        justify-content:center;
-        align-items:center;
-        cursor: pointer;
-        background-color:white;
-        border: 0.5px solid black;
+        width: max-content;
+        height: max-content;
+        margin: auto;
+        background-color: white;
+        border: none;
     }
 
     .slide-title{
@@ -74,13 +71,18 @@
     .slide-arrow1, .slide-arrow2{
         width:100%;
         height:100%;
-        background-color:yellow;
         display: flex;
         justify-content:center;
     }
 
     .arrow-img{
         height: 40px;
+        transition: 0.3s;
+    }
+
+    .arrow-img:hover {
+        transition: 0.3s;
+        opacity: 0.5;
     }
 
     .item {
