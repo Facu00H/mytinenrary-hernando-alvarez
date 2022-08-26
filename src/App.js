@@ -4,7 +4,7 @@ import Cities from './pages/Cities'
 import NewCity from './pages/NewCity'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import ScrollToTop from './components/scrollToTop';
-import NotFoundLayout from './layouts/NotFoundLayout';
+import NotFound from './pages/NotFound'
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
           <Route path="/" element={<Welcome />} />
           <Route path="/cities" element={<Cities />} />
           <Route path="/newcity" element={<NewCity />} />
-          <Route path="*" element={<NotFoundLayout />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </div>
