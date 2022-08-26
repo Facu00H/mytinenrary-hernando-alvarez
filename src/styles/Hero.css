@@ -2,12 +2,13 @@
   width: 100%;
   height:100vh;
   background-image: url('https://images.pexels.com/photos/3816807/pexels-photo-3816807.jpeg') ;
-  background-position: 50% 30%;
-  background-size: 150%;
+  background-position: center;
+  background-size: cover;
   display:flex;
   flex-direction: column;
   justify-content:center;
   align-items:center;
+  background-repeat: no-repeat;
 }
 
 .logo {
@@ -26,6 +27,8 @@
   transition: all 0.4s ease;
   text-decoration: none;
   color: black;
+  font-weight: bold;
+  border: 2.5px solid black;
 }
 
 .header-btn:hover{
