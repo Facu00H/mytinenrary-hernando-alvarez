@@ -1,5 +1,6 @@
 .nav{
-  height: 10vh;
+  padding:1rem 0;
+  height: auto;
   background-color: rgba(256, 256, 256, 0.38);
   backdrop-filter: blur(5px);
   border-bottom: 1px solid black;
@@ -9,6 +10,7 @@
   align-items:center;
   position:sticky;
   top: 0;
+  flex-wrap: wrap;
 }
 
 .nav-logo {
@@ -20,27 +22,30 @@
   display: flex;
   justify-content:center;
   align-items:center;
+  flex-direction:column;
 }
 
 .items-container{
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  width:10em;
+  width:100vw;
   padding: 1rem 0.5rem;
-  position: absolute;
-  top: 10vh;
-  left: 0;
-  transition: all 0.5s
+  transition: all 0.5s ease;
 }
 
 .burguer{
-  height:60%;
+  height:40px;
   padding:5px;
   display: flex;
   justify-content:center;
   align-items:center;
   cursor: pointer;
+}
+
+.transparent{
+  background-color:transparent;
+  transition:ease 1s;
 }
 
 .imgBurguer{
@@ -64,39 +69,54 @@
   align-items: center;
   padding-left:1em;
   background-color:white;
+  width: 100%;
+  justify-content: center;
+  transition: 0.5s ease;
 }
 
 .hidden{
-  left: -50%
+  display: none;
 }
 
-@media (min-width: 450px){
-  .nav-btn{
-    height: 2.2rem;
-    width:12rem;
+
+@media (min-width: 768px) {
+  .navegation{
+    display: none;
   }
-}
 
-@media (min-width: 1024px){
   .nav{
-    gap: 10rem;
+    justify-content:space-evenly;
+    flex-wrap: nowrap;
   }
-}
 
-@media (min-width: 1440px){
-  .nav{
-    gap: 20rem;
+  .logo-container, .user-container, .items-container{
+    width:33%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+  }
+
+  .items-container{
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+    align-items:center;
+    margin-left: 1rem;
   }
 
   .nav-btn{
-    height: 4rem;
-    width:15rem;
-    font-size:1.5rem;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    width:40%;
+    border:none;
+    background-color:transparent;
   }
-}
 
-@media (min-width: 2560px) {
-  .nav-logo {
-    max-width: 170px;
+  .nav-btn:hover{
+    font-size: 1.1rem;
+    text-decoration:underline;
   }
 }
