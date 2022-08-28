@@ -1,0 +1,33 @@
+.notFound-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.notFound-img {
+    max-width: 600px;
+}
+
+.notFound-title {
+    text-align: center;
+    font-size: 4em;
+    font-weight: 400;
+    color: #81a42c;
+}
+
+.notFound-paragraph {
+    font-size: 20px;
+}
+
+.notFound-btn-container {
+    margin-top: 30px;
+}
+
+.notFound-btn {
+    border-radius: 30px;
+    padding: 8px;
+    border: 3px solid #81a42c;
+    cursor: pointer;
+    text-decoration: none;
+    color: #81a42c;
+}
