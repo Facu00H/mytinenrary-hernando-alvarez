@@ -14,6 +14,7 @@ export default function Footer() {
     }
 
     const pages = [
+        {name: 'Home', URL: '/'},
         {name: 'Cities', URL: '/cities'},
         {name: 'New City', URL: '/newcity'},
     ]
