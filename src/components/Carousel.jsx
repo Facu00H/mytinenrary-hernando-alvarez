@@ -1,10 +1,20 @@
 import React from 'react'
+import axios from 'axios'
 import '../styles/Carousel.css';
 import Arrow from './Arrow';
 import { useEffect,useState } from 'react';
-import { items } from '../data/ArrayCiudades'
+import {Link as LinkRouter} from 'react-router-dom'
+
 
 export default function Carousel() {
+
+  const [cities, setCities] = useState([])
+
+  useEffect(() => {
+    axios.get('http://localhost:4000/cities/')
+    .then( res => setCities(res.data.response))
+    .catch( err => console.error(err))
+  }, [])
 
 
   const range = 4
@@ -17,14 +27,14 @@ export default function Carousel() {
       setStart( getStart - range );
       setEnd( getEnd - range );
     }else{
-      setEnd(items.length);
-      setStart(items.length - range);
+      setEnd(cities.length);
+      setStart(cities.length - range);
     }
     clearInterval(intervalId);
   }
 
   function next(){
-    if(getEnd < items.length){
+    if(getEnd < cities.length){
       setStart( getStart + range );
       setEnd( getEnd + range );
     }else{
@@ -50,8 +60,8 @@ export default function Carousel() {
 
   const itemView = (item) => (
     <div className="item">
-        <img className="citiesImgs" src={item.url} alt="" />
-        <p className="citiesName">{item.title}</p>
+        <LinkRouter to="/details"><img className="citiesImgs" src={item.photo} alt="" /></LinkRouter>
+        <p className="citiesName">{item.city}</p>
     </div>
   )
 
@@ -67,7 +77,7 @@ export default function Carousel() {
           </Arrow>
         </div>
         <div className="slide">
-          {items.slice(getStart, getEnd).map(itemView)}
+          {cities.slice(getStart, getEnd).map(itemView)}
         </div>
         <div className="slide-arrow2">
           <Arrow click={next}>
