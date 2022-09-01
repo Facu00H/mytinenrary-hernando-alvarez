@@ -1,15 +1,13 @@
 import React from 'react'
+import { useState, useEffect } from 'react'
 
-function Input() {
+function Input(props) {
 
-    const handleInput = (e) => {
-        console.log(e.target.value);
-    }
-
+    const [input, setInput] = useState('')
     
     return (
     <>
-        <input type="text" onKeyUp={handleInput} placeholder="Search a city" />
+        <input type="text" onInput={props.input} placeholder="Search a city" />
     </>
     )
 }
