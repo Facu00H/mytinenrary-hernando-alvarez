@@ -1,0 +1,137 @@
+.footer-container {
+    width: 100%;
+    min-height: 10vh;
+    background-color: #E2E2E2;
+}
+
+.footer-container-child {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 100%;
+    margin: auto;
+    padding: 20px 0;
+}
+
+.footer-info-social {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    border-bottom: 1px solid gray;
+}
+
+.footer-socialNetworks {
+    display: flex;
+    align-items: center;
+    width: 20%;
+    justify-content: space-between;
+}
+
+.footer-socialNetworks a {
+    transition: 0.4s;
+}
+
+.footer-socialNetworks a:hover {
+    opacity: 0.5;
+    transition: 0.4s;
+}
+
+.footer-title-menuNavigator-contact {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+
+.footer-page-logo {
+    display: flex;
+}
+
+.footer-logo {
+    width: 150px;
+}
+
+.footer-menu-navigator {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    min-height: 100px;
+    max-height: 100px;
+}
+
+.navigation-links {
+    color: #5f5e5e;
+    transition: 0.3s;
+}
+
+.navigation-links:hover {
+    color: #000000;
+    transition: 0.3s;
+}
+
+.footer-contact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100px;
+    max-height: 100px;
+    justify-content: space-between;
+}
+
+.footer-contact a {
+    text-decoration: none;
+}
+
+.footer-scrollUp-container {
+    display: flex;
+    align-items: center;
+}
+
+.footer-scrollUp-button {
+    background: none;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.footer-scrollUp-button:hover {
+    opacity: 0.5;
+    transition: 0.4s;
+}
+
+.footer-copyright {
+    background-color: #c7c7c7;
+    text-align: center;
+    padding: 15px 0;
+}
+
+@media (max-width: 768px) {
+    .footer-socialNetworks {
+        width: 30%;
+    }
+}
+
+@media (max-width: 425px) {
+
+    .footer-title-menuNavigator-contact {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 350px;
+    }
+
+    .footer-info-social {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .footer-socialNetworks {
+        justify-content: space-around;
+        width: 100%;
+    }
+
+    .footer-menu-navigator {
+        align-items: center;
+    }
+}
