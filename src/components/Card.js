@@ -3,7 +3,6 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import '../styles/Card.css'
 import { Link as LinkRouter } from 'react-router-dom'
-// import Input from './Input';
 
 const Card = () => {
 
@@ -23,7 +22,7 @@ const Card = () => {
   }, [])
 
   useEffect(() => {
-  cities.find(item => item.city.toLowerCase().startsWith(filter.toLowerCase()) ? setCity([...city, item]) : console.log('chau'))
+  cities.find(item => item.city.toLowerCase().startsWith(filter.toLowerCase()) ? setCity([...city, item]) : false )
   }, [filter])
   console.log(city);
 
