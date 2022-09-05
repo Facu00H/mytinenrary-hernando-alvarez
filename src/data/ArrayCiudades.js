@@ -1,0 +1,90 @@
+export const items = [
+  {
+    id:1,
+    url: 'https://viajes.nationalgeographic.com.es/medio/2017/05/19/hong-kong_7ca23c6a.jpg', 
+    title: 'Hong Kong',
+    description:"Hong Kong is best known as a shoppers' paradise. There is, however, so much more to Hong Kong than shopping. Visitors can enjoy views of the city from high altitude, sample local food, celebrate festivals, watch sports competitions, and visit movie settings in the city.",
+    siteToVisit:"Buda Tian Tan, Victoria Harbour.",
+  },
+  {
+    id:2,
+    url: 'https://viajes.nationalgeographic.com.es/medio/2017/05/19/bangkok_7e327824.jpg', 
+    title: 'Bangkok',
+    description:"Bangkok's sights, attractions, and city life appeal to diverse groups of tourists. Royal palaces and temples as well as museums constitute its major historical and cultural tourist attractions.",
+    siteToVisit:"Wat Arun, Chatuchak Market.",
+  },
+  {
+    id:3,
+    url: 'https://viajes.nationalgeographic.com.es/medio/2017/05/19/londres_c8f06b1e.jpg', 
+    title: 'London',
+    description:"London is one of the world's most mesmerizing cities. Modern architectural marvels like the Shard line ancient laneways peppered with historic monuments, high-end shops, and award-winning theaters.",
+    siteToVisit:"Cristal palace Park, Rich Mix.",
+  },
+  {
+    id:4,
+    url: 'https://viajes.nationalgeographic.com.es/medio/2017/05/19/singapur_d652cf49.jpg', 
+    title: 'Singapur',
+    description:"With its century-old temples, bustling hawker centres and lush green spaces, Singapore's varied charms are bound to enchant visitors to our island. Our city's calendar of events is equally diverse,",
+    siteToVisit:"Sentosa, ArtScience Museum",
+  },
+  {
+    id:5,
+    url: 'https://viajes.nationalgeographic.com.es/medio/2017/05/19/paris_9b28f345.jpg', 
+    title: 'Paris',
+    description:"If you are planning a visit or becoming a resident of Paris, you will find everything you need in this charming city. The fashion capital of the world, the city has a long history of art and a rich culture.",
+    siteToVisit:"Eiffel Tower, Musee du Louvre",
+  },
+  {
+    id:6,
+    url: 'https://viajes.nationalgeographic.com.es/medio/2017/05/19/dubai_338723fa.jpg', 
+    title: 'Dubai',
+    description:"The short answer is yes. Dubai is safe for westerners, including Americans. Dubai is a Persian Gulf oasis that travelers ranked as one of the safest cities in the world in 2020.",
+    siteToVisit:"The Desert, Mall of the Emirates",
+  },
+  {
+    id:7,
+    url: 'https://viajes.nationalgeographic.com.es/medio/2017/05/19/estambul_80aca3cc.jpg', 
+    title: 'Istanbul',
+    description:"Sultanahmet District in Istanbul. Sultanahmet is one of the most beautiful places in Istanbul, an archaeological and tourist area, with many mosques, churches, restaurants, gardens and museums.",
+    siteToVisit:"Topkati Palace, Galata tower",
+  },
+  {
+    id:8,
+    url: 'https://viajes.nationalgeographic.com.es/medio/2017/05/19/nueva-york_5d934013.jpg', 
+    title: 'New York',
+    description:"New York is not only the most famous city in the world but also, arguably, the best for tourists, thanks to its diverse culture and myriad of entertainment options. There's never a dull day in the city that doesn't sleep.",
+    siteToVisit:"Central Park, MoMA",
+  },
+  {
+    id:9,
+    url: 'https://viajes.nationalgeographic.com.es/medio/2017/05/19/las-vegas_b95d9c08.jpg', 
+    title: 'Las Vegas',
+    description:"Lined with huge entertainment palaces, many built with a defining theme, and home to performance venues, luxury hotel rooms, and fine dining, this is what most people think of when they picture Las Vegas.",
+    siteToVisit:"Bellagio, Luxor Hotel",
+  },
+  {
+    id:10,
+    url: 'https://viajes.nationalgeographic.com.es/medio/2017/05/19/roma_370225de.jpg', 
+    title: 'Rome',
+    description:"Also known as the Eternal City, Rome is home to some of the most historic monuments, art, and architecture in the world. Harking back to a time when gladiator fights were the daily form of entertainment, the city is bursting at the seams with fascinating things to see and do.",
+    siteToVisit:"Roma Coliseum, rome pantheon.",
+  },
+  {
+    id:11,
+    url: 'https://viajes.nationalgeographic.com.es/medio/2017/05/19/taipei_13720ebe.jpg', 
+    title: 'Taipei',
+    description:"Arguably the main reason that people visit Taiwan is to experience and explore the island's fascinating temple culture and architecture. Not-to-be-missed highlights include spectacular Baoan Temple in Taipei, the vast complex at Foguangshan and the artistic masterpiece that is Lukang's Longshan Temple.",
+    siteToVisit:"Longshan Temple, Yangmingshan",
+  },
+  {
+    id:12,
+    url: 'https://viajes.nationalgeographic.com.es/medio/2017/05/19/tokio_b3218026.jpg', 
+    title: 'Tokyo',
+    description:"Tokyo is one of the best cities to visit anywhere. It's full of nightlife, culture, amazing temples and shrines and shopping, weird things to see and do.",
+    siteToVisit:"Tokyo Tower, Sumida River.",
+  },
+];
+
+export default { 
+  items,
+}
