@@ -33,19 +33,19 @@ export default function Details() {
                     <div>
                         <img className='details-img' src={item.photo} alt="" />
                     </div>
-                    <div className='details-body'>
+                </div>
+                <div className='details-body'>
                         <h2>Name: {item.city}</h2>
                         <h3>Country: {item.country}</h3>
                         <p>Population: {item.population}</p>
                         <p>Fundation: {item.fundation}</p>
                     </div>
-                </div>
             </div>
         </>
     )
 
     return (
-        <div>
+        <div className='main-content'>
             {cities.map(detailsItem)}
         </div>
     )
