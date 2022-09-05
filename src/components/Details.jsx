@@ -19,16 +19,6 @@ export default function Details() {
             .catch(err => console.error(err))
     }, [])
 
-    // cities.find(e => {
-    //     if (e._id == query.replace("?", "")) {
-    //         setId(e._id)
-    //         // e.map(e => setCities(e))
-    //     } else {
-    //         // console.log('chau');
-    //     }
-    // })
-
-    // console.log(cities);
 
     const detailsItem = item => (
         <>
