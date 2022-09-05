@@ -29,7 +29,6 @@ const Card = () => {
     results = results.filter( data => data.city.toLowerCase().startsWith(filter.toLocaleLowerCase()))
   }
   
-
   const card = item => {
 
     return (
