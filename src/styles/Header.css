@@ -104,6 +104,15 @@
     justify-content:center;
     align-items:center;
     margin-left: 1rem;
+    order: 0;
+  }
+
+  .logo-container{
+    order: 1;
+  }
+
+  .user-container{
+    order:2;
   }
 
   .nav-btn{

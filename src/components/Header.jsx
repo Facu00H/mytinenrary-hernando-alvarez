@@ -18,6 +18,7 @@ const Header = () => {
   } 
 
   const navItems = [
+    {name: "Home", URL:"/"},
     {name: "Cities", URL:"/cities"},
     {name: "New Cities", URL:"/newcity"}
   ]
@@ -29,14 +30,15 @@ const Header = () => {
   return (
     <div className="nav">
       <Burguer click={handleClick} />
-      <div className={clicked === true ? "items-container" : "items-container hidden"}>
-        {navItems.map(generateBtn)}
-      </div>
+      
       <div className="logo-container">
         <img className='nav-logo' src="/assets/img/nav_logo.png" alt="Nav logo" />
       </div>
       <div className="user-container">
         <img className="userImg" src='https://icon-library.com/images/generic-user-icon/generic-user-icon-19.jpg' alt="User Profile"/>  
+      </div>
+      <div className={clicked === true ? "items-container" : "items-container hidden"}>
+        {navItems.map(generateBtn)}
       </div>
     </div>
   );
