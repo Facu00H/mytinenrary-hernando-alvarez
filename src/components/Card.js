@@ -9,11 +9,10 @@ const Card = () => {
   const [filter, setFilter] = useState('');
 
   const handleInput = (e) => {
-    setFilter(e.target.value);
+    setFilter(e.target.value)
   }
 
   const [cities, setCities] = useState([])
-  const [city, setCity] = useState([])
 
   useEffect(() => {
     axios.get('http://localhost:4000/cities/')
@@ -21,11 +20,15 @@ const Card = () => {
       .catch(err => console.error(err))
   }, [])
 
-  useEffect(() => {
-  cities.find(item => item.city.toLowerCase().startsWith(filter.toLowerCase()) ? setCity([...city, item]) : false )
-  }, [filter])
-  console.log(city);
-
+  let results = [];
+  if(results.length === 0){
+    results = cities;
+  }
+  
+  if(results.length !== 0){
+    results = results.filter( data => data.city.toLowerCase().startsWith(filter.toLocaleLowerCase()))
+  }
+  
   const card = item => {
 
     return (
@@ -44,9 +47,17 @@ const Card = () => {
   }
 
   return (
-    <div className="container">
-      {cities.map(card)}
+    <>
+    <div className='input-container'>
+      <p className='filter-title'>Buscar ciudad:</p>
+      <div className='filter-container'>
+        <input className='filter-text' onInput={handleInput} placeholder='Search city...'></input>
+      </div>
     </div>
+    <div className="container">
+      {results.map(card)}
+    </div>
+    </>
   );
 }
 export default Card;
