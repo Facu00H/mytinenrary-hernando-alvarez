@@ -27,14 +27,14 @@ export default function Carousel() {
       setStart( getStart - range );
       setEnd( getEnd - range );
     }else{
-      setEnd(cities.length);
-      setStart(cities.length - range);
+      setEnd(12);
+      setStart(12 - 4);
     }
     clearInterval(intervalId);
   }
 
   function next(){
-    if(getEnd < cities.length){
+    if(getEnd < 12){
       setStart( getStart + range );
       setEnd( getEnd + range );
     }else{

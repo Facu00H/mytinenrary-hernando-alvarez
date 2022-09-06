@@ -1,11 +1,12 @@
 import React from 'react';
 import WebsiteLayout from '.././layouts/WebsiteLayout'
-import UnderConstruction from '.././layouts/UnderConstruction'
+import NewCityForm from '../components/NewCityForm'
+import '../styles/NewCity.css'
 
 export default function NewCity() {
   return (
     <WebsiteLayout>
-      <UnderConstruction/>
+      <NewCityForm/>
     </WebsiteLayout>
   )
 }
