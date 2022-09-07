@@ -6,6 +6,7 @@ import NewCity from './pages/NewCity'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import ScrollToTop from './components/scrollToTop';
 import NotFound from './pages/NotFound'
+import EditCity from './pages/EditCity';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/details" element={<DetailsPage />} />
           <Route path="/cities" element={<Cities />} />
           <Route path="/newcity" element={<NewCity />} />
+          <Route path="/editcity" element={<EditCity />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
