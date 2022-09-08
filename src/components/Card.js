@@ -3,24 +3,28 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import '../styles/Card.css'
 import { Link as LinkRouter } from 'react-router-dom'
-import {useGetAllCitiesQuery} from '../features/citiesAPI'
+
 
 const Card = () => {
 
-  const {data :cities} = useGetAllCitiesQuery()
-
-  console.log(cities)
-
+  
   const [filter, setFilter] = useState('');
 
   const handleInput = (e) => {
     setFilter(e.target.value)
   }
 
+  const [cities, setCities] = useState([])
+
+  useEffect(() => {
+    axios.get('http://localhost:4000/cities/')
+      .then(res => setCities(res.data.response))
+      .catch(err => console.error(err))
+  }, [])
 
   let results = [];
   if(results.length === 0){
-    results = cities.response;
+    results = cities;
   }
   
   if(results.length !== 0){
@@ -53,7 +57,7 @@ const Card = () => {
       </div>
     </div>
     <div className="container">
-      {results.map(card)}
+      {results?.map(card)}
     </div>
     </>
   );
