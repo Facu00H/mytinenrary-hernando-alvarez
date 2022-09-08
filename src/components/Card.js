@@ -3,33 +3,38 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import '../styles/Card.css'
 import { Link as LinkRouter } from 'react-router-dom'
+import {useGetAllCitiesQuery} from '../features/citiesAPI'
 
 
 const Card = () => {
-
   
-  const [filter, setFilter] = useState('');
-
+  const [filterText, setFilterText] = useState('');
+  const {
+    data: cities, 
+    error,
+    isLoading,
+    isSuccess,
+    isFailed,
+  } = useGetAllCitiesQuery()
+  
+  let filter = []
+  if(isLoading){
+    filter = []
+  }else if(isSuccess){
+    filter = cities.response
+  }else if(isFailed){
+    filter = []
+    console.log(error)
+  }
+  
   const handleInput = (e) => {
-    setFilter(e.target.value)
+    setFilterText(e.target.value)
   }
-
-  const [cities, setCities] = useState([])
-
-  useEffect(() => {
-    axios.get('http://localhost:4000/cities/')
-      .then(res => setCities(res.data.response))
-      .catch(err => console.error(err))
-  }, [])
-
-  let results = [];
-  if(results.length === 0){
-    results = cities;
-  }
+    
+    if(filter.length !== 0){
+      filter = filter.filter( data => data.city.toLowerCase().startsWith(filterText.toLocaleLowerCase()))
+    }
   
-  if(results.length !== 0){
-    results = results.filter( data => data.city.toLowerCase().startsWith(filter.toLocaleLowerCase()))
-  }
   
   const card = item => {
 
@@ -57,7 +62,7 @@ const Card = () => {
       </div>
     </div>
     <div className="container">
-      {results?.map(card)}
+      {filter.map(card)}
     </div>
     </>
   );
