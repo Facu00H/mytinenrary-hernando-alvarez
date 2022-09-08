@@ -56,7 +56,6 @@ const Card = () => {
   return (
     <>
     <div className='input-container'>
-      <p className='filter-title'>Buscar ciudad:</p>
       <div className='filter-container'>
         <input className='filter-text' onInput={handleInput} placeholder='Search city...'></input>
       </div>
