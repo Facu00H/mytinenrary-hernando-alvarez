@@ -60,7 +60,7 @@ export default function Carousel() {
 
   const itemView = (item) => (
     <div className="item">
-        <LinkRouter to="/details"><img className="citiesImgs" src={item.photo} alt="" /></LinkRouter>
+        <LinkRouter to={'/details?' + item._id}><img className="citiesImgs" src={item.photo} alt="" /></LinkRouter>
         <p className="citiesName">{item.city}</p>
     </div>
   )
