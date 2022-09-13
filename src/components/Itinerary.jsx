@@ -2,21 +2,24 @@ import React from 'react';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import '../styles/Itinerary.css'
-import Activity from './Activities';
+import Comments from './Comments';
+import Activity from './Activities'
 
 const Itinerary = () => {
 
   const [itinerary, setItinerary] = useState([])
   const [visibility, setVisibility] = useState(false)
-  const [activities, setActivities] = useState([])
   const queryString = window.location.search.replace('?', '');
   let url = `http://localhost:4000/itineraries/city/${queryString}`
 
+  const [clicked, setClicked] = useState(false)
 
   function handelVisibility(e) {
     if (e.target.innerHTML === 'See more!') {
+      setClicked(true)
       e.target.innerHTML = 'See less';
     } else {
+      setClicked(false)
       e.target.innerHTML = 'See more!';
     }
   }
@@ -26,14 +29,6 @@ const Itinerary = () => {
       .then(res => setItinerary(res.data.response))
       .catch(err => console.error(err))
   }, [])
-
-  const boxData = (data) => {
-    return (
-      <div className="box-data">
-
-      </div>
-    )
-  }
 
   const cardItinerary = (data) => {
     return (
@@ -73,8 +68,9 @@ const Itinerary = () => {
         <div className="btn-container">
           <div className='btn-seeMore' onClick={handelVisibility} id={data._id} value={visibility}>See more!</div>
         </div>
-        <div className="activities-container">
+        <div className={clicked === false ? 'itinerary-activities-comments' : null}>
           <Activity itinerary={data._id} />
+          <Comments itinerary={data._id} />
         </div>
       </div>
     )

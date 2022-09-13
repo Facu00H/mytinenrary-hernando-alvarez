@@ -1,0 +1,31 @@
+.comments-container {
+    display: flex;
+    gap: 20px;
+    padding: 10px 0;
+}
+
+.comments-user-info {
+    text-align: center;
+    font-weight: bold;
+}
+
+.comments-user-photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 360px;
+    object-fit: cover;
+}
+
+.comments-message-container {
+    border: 2px solid rgba(128, 128, 128, 0.685);
+    border-radius: 8px;
+    width: 100%;
+    padding: 10px;
+}
+
+.comments-message {
+    width: max-content;
+    background-color: #007aff;
+    border-radius: 18px;
+    padding: 5px;
+}
