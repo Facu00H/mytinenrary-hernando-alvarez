@@ -18,8 +18,8 @@ function App() {
           <Route path="/" element={<Welcome />} />
           <Route path="/details" element={<DetailsPage />} />
           <Route path="/cities" element={<Cities />} />
-          <Route path="/signin" element={<SignIn />} />
-          <Route path="/signup" element={<SignUp />} />
+          <Route path="/auth/signin" element={<SignIn />} />
+          <Route path="/auth/signup" element={<SignUp />} />
           <Route path="/newcity" element={<NewCity />} />
           <Route path="/editcity" element={<EditCity />} />
           <Route path="*" element={<NotFound />} />
