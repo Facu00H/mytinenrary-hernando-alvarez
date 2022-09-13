@@ -3,16 +3,12 @@ import {useAddUserSignInMutation} from '../features/citiesAPI'
 import SignInGoogle from './SignInGoogle'
 export default function SignIn() {
 
-let [name,setName]=useState()
 let [email,setEmail]=useState()
 let [password,setPassword]=useState()
 let [user,setUser]=useState()
 
 
-const handleName = function(e){
-    setName(e.target.value)
 
-}
 const handleEmail = function(e){
     setEmail(e.target.value)
     
@@ -25,7 +21,6 @@ const handlePassword = function(e){
 
 useEffect(()=>{
     let obj ={
-        name:name,
         email:email,
         password:password,
         form:'form',
@@ -34,7 +29,7 @@ useEffect(()=>{
 
     setUser(obj)
 
-    },[name,email,password])
+    },[email,password])
 
 const [signInUser] = useAddUserSignInMutation()
 
@@ -53,12 +48,13 @@ const handleSubmit = function(e){
         <h1 className='hSign'>Please Sign In</h1>
       <form onSubmit={handleSubmit} className="main-Sign">
     <div className='form-Sign'>
-    <p className='select-Sign'>Name</p>
-    <input type='text' onChange={handleName}></input>
+        <div className='inputs-p'>
+
     <p className='select-Sign'>Email</p>
     <input type='email' onChange={handleEmail}></input>
     <p className='select-Sign'>Password</p>
     <input type='password' onChange={handlePassword}></input>
+        </div>
         <div  className='submit-Sign'>
         <button className='button-Sign'>Sign Up</button>
         <SignInGoogle/>

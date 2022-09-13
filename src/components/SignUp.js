@@ -43,13 +43,13 @@ useEffect(()=>{
 
     },[name,email,password,photo])
 
-    console.log(user)
+   
 
 const [signUpUser] = useAddUserSignUpMutation()
 
 const handleSubmit = function(e){
     e.preventDefault()
-
+    console.log(user)
     signUpUser(user)
     .unwrap()
     .then(() => {})
