@@ -3,7 +3,7 @@ import '../styles/Header.css'
 import Burguer from './header-components/Burguer'
 import {Link as LinkRouter} from 'react-router-dom'
 import { useState } from 'react';
-
+import Login from './Login';
 
 
 
@@ -36,7 +36,7 @@ const Header = () => {
         <img className='nav-logo' src="/assets/img/nav_logo.png" alt="Nav logo" />
       </div>
       <div className="user-container">
-        <img className="userImg" src='https://icon-library.com/images/generic-user-icon/generic-user-icon-19.jpg' alt="User Profile"/>  
+       <Login/>
       </div>
       <div className={clicked === true ? "items-container" : "items-container hidden"}>
         {navItems.map(generateBtn)}
