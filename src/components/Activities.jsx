@@ -43,7 +43,7 @@ function Activity() {
     }
 
     return (
-        <div>
+        <div className="container-activities">
             {activities.map(cardActivities)}
         </div>
     )
