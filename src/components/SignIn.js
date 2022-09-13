@@ -1,0 +1,70 @@
+import React, { useEffect,useState } from 'react'
+import {useAddUserSignInMutation} from '../features/citiesAPI'
+import SignInGoogle from './SignInGoogle'
+export default function SignIn() {
+
+let [name,setName]=useState()
+let [email,setEmail]=useState()
+let [password,setPassword]=useState()
+let [user,setUser]=useState()
+
+
+const handleName = function(e){
+    setName(e.target.value)
+
+}
+const handleEmail = function(e){
+    setEmail(e.target.value)
+    
+}
+const handlePassword = function(e){
+    setPassword(e.target.value)
+    
+}
+
+
+useEffect(()=>{
+    let obj ={
+        name:name,
+        email:email,
+        password:password,
+        form:'form',
+        role:'user'
+    }
+
+    setUser(obj)
+
+    },[name,email,password])
+
+const [signInUser] = useAddUserSignInMutation()
+
+const handleSubmit = function(e){
+    e.preventDefault()
+
+    signInUser(user)
+    
+}
+
+
+
+
+  return (
+    <div className='Sign-container'>
+        <h1 className='hSign'>Please Sign In</h1>
+      <form onSubmit={handleSubmit} className="main-Sign">
+    <div className='form-Sign'>
+    <p className='select-Sign'>Name</p>
+    <input type='text' onChange={handleName}></input>
+    <p className='select-Sign'>Email</p>
+    <input type='email' onChange={handleEmail}></input>
+    <p className='select-Sign'>Password</p>
+    <input type='password' onChange={handlePassword}></input>
+        <div  className='submit-Sign'>
+        <button className='button-Sign'>Sign Up</button>
+        <SignInGoogle/>
+        </div>
+    </div>
+   </form>
+    </div>
+  )
+}
