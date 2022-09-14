@@ -66,7 +66,7 @@ console.log(elem)
           </div>
         </div>
         <div className="itinerary-img">
-          <img src="asdf" alt="img" className="" />
+          <img src={data.photo} alt={data.name} className='itinerary-photo' />
         </div>
         <div className="btn-container">
           <div className='btn-seeMore' onClick={handelVisibility} id={data._id} value={visibility}>See more!</div>
