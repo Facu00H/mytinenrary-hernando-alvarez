@@ -9,6 +9,7 @@ import NotFound from './pages/NotFound'
 import EditCity from './pages/EditCity';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
+import Itineraries from './pages/Itineraries'
 function App() {
   return (
     <div>
@@ -22,6 +23,7 @@ function App() {
           <Route path="/auth/signup" element={<SignUp />} />
           <Route path="/newcity" element={<NewCity />} />
           <Route path="/editcity" element={<EditCity />} />
+          <Route path="/itineraries/user" element={<Itineraries/>} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
