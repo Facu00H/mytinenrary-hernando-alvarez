@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import '../styles/Itinerary.css'
 import Comments from './Comments';
 import Activity from './Activities'
+import { useGetIdItinerariesQuery } from '../features/citiesAPI';
 
 const Itinerary = () => {
 
@@ -24,12 +25,14 @@ const Itinerary = () => {
     }
   }
 
-  useEffect(() => {
-    axios.get(url)
-      .then(res => setItinerary(res.data.response))
-      .catch(err => console.error(err))
-  }, [])
 
+
+  const {
+    data:elem,
+
+} = useGetIdItinerariesQuery(queryString)
+
+console.log(elem)
   const cardItinerary = (data) => {
     return (
       <div className="card-itinerary">
@@ -78,7 +81,7 @@ const Itinerary = () => {
 
   return (
     <div>
-      {itinerary.map(cardItinerary)}
+      {elem?elem.response.map(cardItinerary):''}
     </div>
   );
 }
