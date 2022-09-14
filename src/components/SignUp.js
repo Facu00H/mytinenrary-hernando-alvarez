@@ -5,6 +5,7 @@ import SignUpGoogle from './SignUpGoogle'
 export default function SignUp() {
 
 let [name,setName]=useState()
+let [lastName, setLastName]= useState()
 let [email,setEmail]=useState()
 let [password,setPassword]=useState()
 let [photo,setPhoto]=useState()
@@ -13,6 +14,10 @@ let [user,setUser]=useState()
 
 const handleName = function(e){
     setName(e.target.value)
+
+}
+const handleLastName = function(e){
+    setLastName(e.target.value)
 
 }
 const handleEmail = function(e){
@@ -32,24 +37,23 @@ const handlePhoto = function(e){
 useEffect(()=>{
     let obj ={
         name:name,
-        email:email,
-        password:password,
+        lastName:lastName,
         photo:photo,
-        form:'form',
-        role:'user'
+        mail: email,
+        password:password,
+        role: 'user',
+        from:'form'
     }
 
     setUser(obj)
-
-    },[name,email,password,photo])
-
    
+    },[name,email,lastName,password,photo])
+
 
 const [signUpUser] = useAddUserSignUpMutation()
 
 const handleSubmit = function(e){
     e.preventDefault()
-    console.log(user)
     signUpUser(user)
     .unwrap()
     .then(() => {})
@@ -69,6 +73,8 @@ const handleSubmit = function(e){
     <div className='form-Sign'>
     <p className='select-Sign'>Name</p>
     <input type='text' onChange={handleName}></input>
+    <p className='select-Sign'>Last name</p>
+    <input type='text' onChange={handleLastName}></input>
     <p className='select-Sign'>Photo Link</p>
     <input type='text' onChange={handlePhoto}></input>
     <p className='select-Sign'>Email</p>
