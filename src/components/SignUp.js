@@ -6,7 +6,7 @@ export default function SignUp() {
 
 let [name,setName]=useState()
 let [lastName, setLastName]= useState()
-let [email,setEmail]=useState()
+let [email,setMail]=useState()
 let [password,setPassword]=useState()
 let [photo,setPhoto]=useState()
 let [user,setUser]=useState()
@@ -21,7 +21,7 @@ const handleLastName = function(e){
 
 }
 const handleEmail = function(e){
-    setEmail(e.target.value)
+    setMail(e.target.value)
     
 }
 const handlePassword = function(e){
@@ -36,18 +36,20 @@ const handlePhoto = function(e){
 
 useEffect(()=>{
     let obj ={
-        name:name,
-        lastName:lastName,
-        photo:photo,
+        name: name,
+        lastName: lastName,
         mail: email,
         password:password,
+        photo: photo,
         role: 'user',
-        from:'form'
+        from:'form',
     }
 
     setUser(obj)
    
     },[name,email,lastName,password,photo])
+
+    console.log(user)
 
 
 const [signUpUser] = useAddUserSignUpMutation()
