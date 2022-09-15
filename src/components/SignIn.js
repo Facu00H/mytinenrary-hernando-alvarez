@@ -36,7 +36,7 @@ const [signInUser] = useAddUserSignInMutation()
 
 const handleSubmit = function(e){
     e.preventDefault()
-    if(user.email.includes('@')===false){
+    if(user.mail.includes('@')===false){
         Swal.fire({
             title:'Error email',
             text:'need include the @ sign',
