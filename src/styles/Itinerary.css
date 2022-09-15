@@ -79,6 +79,13 @@
   align-items:center;
 }
 
+.itinerary-photo {
+  max-width: 450px;
+  max-height: 270px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
 .itinerary-activities-comments {
   display: none;
 }
