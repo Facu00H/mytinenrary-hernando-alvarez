@@ -39,7 +39,7 @@ endpoints: (builder) => ({
           url: '/auth/signout',
           method: 'POST',
           body: payload,
-        }),          
+        }),         
       }),
 
 }),
