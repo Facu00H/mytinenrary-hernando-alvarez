@@ -9,7 +9,7 @@ const citiesAPI = createApi({
 baseQuery: fetchBaseQuery({
   baseUrl: "http://localhost:4000/",
 }),
-tagTypes: ['Post'],
+
 endpoints: (builder) => ({
           getAllCities: builder.query({ query: () =>  "/cities" }),
 
@@ -36,7 +36,7 @@ endpoints: (builder) => ({
           url: '/auth/signout',
           method: 'POST',
           body: payload,
-        }),          
+        }),         
       }),
 
 }),
