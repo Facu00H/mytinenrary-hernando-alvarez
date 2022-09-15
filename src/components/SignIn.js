@@ -61,8 +61,6 @@ const handleSubmit = function(e){
         confirmButtonText:'Do It'
        })
     }
-
-    
 }
 
 

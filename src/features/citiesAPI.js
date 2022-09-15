@@ -46,7 +46,7 @@ endpoints: (builder) => ({/////////////////cieties//////////////////////////////
           url: '/auth/signout',
           method: 'POST',
           body: payload,
-        }),          
+        }),         
       }),
 
 }),

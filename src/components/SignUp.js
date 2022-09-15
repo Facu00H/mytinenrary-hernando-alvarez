@@ -7,12 +7,13 @@ export default function SignUp() {
 
 let [name,setName]=useState()
 let [lastName, setLastName]= useState()
-let [email,setEmail]=useState()
+let [email,setMail]=useState()
 let [password,setPassword]=useState()
 let [photo,setPhoto]=useState()
 let [user,setUser]=useState()
 
 ////////////////////////////////////////////Functions that execute with the changes in the respect inputs/////////////////////////////////
+
 const handleName = function(e){
     setName(e.target.value)
 
@@ -22,7 +23,7 @@ const handleLastName = function(e){
 
 }
 const handleEmail = function(e){
-    setEmail(e.target.value)
+    setMail(e.target.value)
     
 }
 const handlePassword = function(e){
@@ -35,15 +36,16 @@ const handlePhoto = function(e){
 }
 
 ////////////////////////////////////////////////// object that will be filled for send in post/////////////////////////////////////
+
 useEffect(()=>{
     let obj ={
-        name:name,
-        lastName:lastName,
-        photo:photo,
+        name: name,
+        lastName: lastName,
         mail: email,
         password:password,
+        photo: photo,
         role: 'user',
-        from:'form'
+        from:'form',
     }
 
     setUser(obj)
@@ -51,6 +53,7 @@ useEffect(()=>{
     },[name,email,lastName,password,photo])
 
 ////////////////////////////////////////////////////reducer that will be called when the user doit submit////////////////////////////////
+
 const [signUpUser] = useAddUserSignUpMutation()
 
 const handleSubmit = function(e){
