@@ -21,7 +21,7 @@ const handlePassword = function(e){
 
 useEffect(()=>{
     let obj ={
-        email:email,
+        mail: email,
         password:password,
         form:'form',
         role:'user'
@@ -37,7 +37,7 @@ const handleSubmit = function(e){
     e.preventDefault()
 
     signInUser(user)
-    
+
 }
 
 
