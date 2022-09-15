@@ -9,12 +9,19 @@ const citiesAPI = createApi({
 baseQuery: fetchBaseQuery({
   baseUrl: "http://localhost:4000/",
 }),
+////////////////////////////////////////Get methods//////////////////////////////////////////////////
 
-endpoints: (builder) => ({
+
+endpoints: (builder) => ({/////////////////cieties//////////////////////////////////////////////
           getAllCities: builder.query({ query: () =>  "/cities" }),
 
 
+
+///////////////////////////////////////////itineraries//////////////////////////////////////////
           GetIdItineraries : builder.query({ query: (id) => `/itineraries/city/${id}` }),
+
+
+          GetItinerariesUser : builder.query({ query: (user) => `/itineraries/user/${user}` }),
 
 
 ///////////////////////////post Methods user/////////////////////////////////
@@ -48,6 +55,6 @@ endpoints: (builder) => ({
 
 
 export default citiesAPI
-export const {useGetAllCitiesQuery,useGetIdItinerariesQuery ,useAddUserSignInMutation,useAddUserSignOutMutation,useAddUserSignUpMutation} = citiesAPI
+export const {useGetAllCitiesQuery,useGetIdItinerariesQuery,useGetItinerariesUserQuery ,useAddUserSignInMutation,useAddUserSignOutMutation,useAddUserSignUpMutation} = citiesAPI
 
 
