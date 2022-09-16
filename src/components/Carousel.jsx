@@ -67,10 +67,10 @@ export default function Carousel() {
 
   return (
     <>
-      <div className="slide-container">
         <div className="slide-title">
           <h1>Popular MYtineraries</h1>
         </div>
+      <div className="slide-container">
         <div className="slide-arrow1">
           <Arrow click={previus}>
             <input className="arrow-img" type="image" src="https://cdn-icons-png.flaticon.com/512/271/271220.png" alt="Left arrow"></input>
