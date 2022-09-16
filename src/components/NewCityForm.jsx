@@ -1,10 +1,11 @@
 import React from 'react';
+import Swal from 'sweetalert2';
 import { useState, useEffect} from 'react'
 import axios from 'axios'
 
 const NewCityForm = () => {
 
-  const [message, setMessage] = useState('')
+
   
   const [formValues, setFormValues] = useState({
     city: '',
@@ -16,11 +17,57 @@ const NewCityForm = () => {
 
   const handelSubmit = (e) => {
     e.preventDefault()
-    if(formValues.city.length > 3 && formValues.country !== "" && formValues.photo.length > 5 && formValues.population !== 0 && formValues.fundation !== 0) {
-    axios.post('http://localhost:4000/cities/', formValues)
-      .then((response) => console.log(response))
-      .catch((error) => console.log(error))
-      setMessage('form send succesfully')
+
+    if(formValues.city.length < 3) {
+      Swal.fire({
+        title:'Name failed',
+        text : 'need include more of three leters'
+      })
+
+
+    }else if(formValues.country === ""){
+      Swal.fire({
+        title:'Country failed',
+        text : 'i think that you dont write anithing , please change it'
+      })
+
+
+
+    }else if(formValues.photo.length < 5){
+      Swal.fire({
+        title:'Photo failed',
+        text:'the photo need be a link and contain more of 5 characters'
+      })
+
+
+    }else if(formValues.population <= 100){
+      Swal.fire({
+        title:'Population failed',
+        text:"the population it's bigger than that, don't you think? "
+      })
+
+
+    }else if(formValues.fundation <= 10 ){
+      Swal.fire({
+        title:'Fundation failed',
+        text:"I know, there are cities older than Christ, but they are not available, please write again "
+      })
+
+
+    }else{
+
+      axios.post('http://localhost:4000/cities/', formValues)
+        .then((response) => console.log(response))
+        .catch((error) => console.log(error))
+
+        Swal.fire({
+          icon:'success',
+          title:'City created with success',
+          text:'you can create as many times as you want',
+          confirmButtonText:'Great'
+      })
+    }
+      
       setFormValues({
         city: '',
         country: '',
@@ -28,9 +75,7 @@ const NewCityForm = () => {
         population: '',
         fundation: '',
       })
-    }else{
-      setMessage('all fields must be filled')
-    }
+   
   }
   
 
@@ -84,7 +129,6 @@ const NewCityForm = () => {
           <button onClick={handelSubmit} type='submit' className='submit-city'>Submit</button>
         </div>
         <div>
-        {errMessage(message)}
         </div>
       </div>
     </form>

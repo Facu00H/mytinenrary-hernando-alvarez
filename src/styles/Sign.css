@@ -5,7 +5,7 @@
     border-radius:1rem;
   
     width:305px;
-    height: 350px;
+    height: 400px;
     box-shadow: -12px 10px 40px 0px rgba(0,0,0,0.45);
     -webkit-box-shadow: -12px 10px 40px 0px rgba(0,0,0,0.45);
     -moz-box-shadow: -12px 10px 40px 0px rgba(0,0,0,0.45);
@@ -15,6 +15,23 @@
     border: 1px solid black;
     text-align: center;
 }
+
+.form-SignIn{
+    border-radius:1rem;
+  
+    width:305px;
+    height: 320px;
+    box-shadow: -12px 10px 40px 0px rgba(0,0,0,0.45);
+    -webkit-box-shadow: -12px 10px 40px 0px rgba(0,0,0,0.45);
+    -moz-box-shadow: -12px 10px 40px 0px rgba(0,0,0,0.45);
+    overflow:hidden;
+    padding:0.5em;
+    font-weight: bold;
+    border: 1px solid black;
+    text-align: center;
+
+}
+
 .select-Sign{
     margin-top: 10px;
     font-style: italic

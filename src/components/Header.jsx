@@ -20,8 +20,6 @@ const Header = () => {
   const navItems = [
     {name: "Home", URL:"/"},
     {name: "Cities", URL:"/cities"},
-    // {name: "New Cities", URL:"/newcity"},
-    // {name: "Edit city", URL:"/editcity"},
     {name: "Itineraries", URL:"/itineraries/user"}
   ]
 

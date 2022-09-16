@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { useState, useEffect } from 'react'
-
+import Swal from 'sweetalert2';
 const EditCityForm = () => {
   const [ bd, setBd ] = useState([])
   const [ citySelected, setCitySelected ] = useState('')
@@ -41,9 +41,38 @@ const EditCityForm = () => {
 
   const handelSubmit = (e) => {
     e.preventDefault()
-      axios.patch(url, formValues)
-        .then((response) => console.log(response))
-        .catch((error) => console.log(error))
+    if(formValues.photo.length < 4){
+      Swal.fire({
+        title:'Photo Failed',
+        text:'the photo need has more of 4 characters'
+      })
+    }else if( formValues.population <= 100 ){
+      Swal.fire({
+        title:'Population Failed',
+        text:'the Population need has more of 100 people'
+      })
+    }else if(formValues.fundation <= 10 ){
+      Swal.fire({
+        title:'Fundation Failed',
+        text:'I know, there are cities older than Christ, but they are not available, please write again '
+      })
+    }else{
+      
+            axios.patch(url, formValues)
+              .then((response) => console.log(response))
+              .catch((error) => console.log(error))
+
+              Swal.fire({
+                icon:'success',
+                title:'City created with success',
+                text:'please look or read or create more cities',
+                confirmButtonText:'Do It'
+            })
+
+    }
+
+
+
 
       setFormValues({
         photo: '',
