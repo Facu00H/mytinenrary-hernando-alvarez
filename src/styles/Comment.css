@@ -29,3 +29,17 @@
     border-radius: 18px;
     padding: 5px;
 }
+
+@media (min-width:768px) {
+    .comments-container {
+        width: 80%;
+        margin: auto;
+    }
+}
+
+@media (min-width:320px) {
+    .comments-container {
+        width: 80%;
+        margin: auto;
+    }
+}

@@ -20,3 +20,17 @@
     margin: auto;
     width: 170px;
 }
+
+@media (min-width:320px) {
+    .container-activities {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (min-width:768px) {
+    .container-activities {
+        flex-direction: row;
+        align-items: center;
+    }
+}

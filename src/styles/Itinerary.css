@@ -90,6 +90,16 @@
   display: none;
 }
 
+@media (min-width:320px) {
+  .itinerary-photo {
+    max-width: 300px;
+    max-height: 250px;
+    border-radius: 10px;
+    object-fit: cover;
+    margin-left: 40px;
+  }
+}
+
 @media (min-width:768px) {
   .container-itineraryCreator{
     justify-content: flex-start;
@@ -119,5 +129,12 @@
   .itinerary-img{
     width: 40%;
     margin: 1rem 0;
+  }
+
+  .itinerary-photo {
+    max-width: 280px;
+    max-height: 250px;
+    border-radius: 10px;
+    object-fit: cover;
   }
 }

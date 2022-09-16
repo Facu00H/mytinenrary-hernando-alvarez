@@ -20,10 +20,13 @@ const Header = () => {
   const navItems = [
     {name: "Home", URL:"/"},
     {name: "Cities", URL:"/cities"},
-    {name: "New Cities", URL:"/newcity"},
-    {name: "Edit city", URL:"/editcity"},
     {name: "Itineraries", URL:"/itineraries/user"}
   ]
+
+  let role = JSON.parse(localStorage.getItem('user')).role;
+
+  role==="admin" && navItems.push({name: "New City", URL:"/newcity"}, {name: "Edit city", URL:"/editcity"})
+
 
   const generateBtn = (item) => (
     <LinkRouter to={ item.URL } className='nav-btn'> { item.name } </LinkRouter>
