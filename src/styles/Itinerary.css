@@ -120,4 +120,11 @@
     width: 40%;
     margin: 1rem 0;
   }
+
+  .itinerary-photo {
+    max-width: 280px;
+    max-height: 250px;
+    border-radius: 10px;
+    object-fit: cover;
+  }
 }
