@@ -1,0 +1,36 @@
+.container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 20px;
+    margin-top: 60px;
+}
+
+
+.ItinerariesUser{
+    display: flex;
+    flex-direction: column;
+    border-radius:1rem;
+    width:305px;
+    height: 220px;
+    box-shadow: -12px 10px 40px 0px rgba(0,0,0,0.45);
+    overflow:hidden;
+    justify-content: center;
+    padding-left: 10px;
+    padding-right: 10px;
+
+}
+.titleIti{
+    font-style: italic;
+    text-align: center;
+    color: rgb(57, 79, 36);
+}
+.citiItiner{
+    font-style: italic;
+    color: rgb(57, 79, 36);
+    text-align: center;
+}
+.userItiner{
+    font-style: italic;
+}
