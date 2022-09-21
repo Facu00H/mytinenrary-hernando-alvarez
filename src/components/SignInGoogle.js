@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useAddUserSignInMutation } from '../features/citiesAPI'
 import * as jose from 'jose'
-import axios from 'axios'
 import { useNavigate } from "react-router-dom";
 
 export default function SignInGoogle() {
@@ -12,10 +11,9 @@ export default function SignInGoogle() {
 
     
     async function handleCredentialResponse(response){
-   let userObj =   jose.decodeJwt(response.credential)
-   console.log(userObj)
+    let userObj = jose.decodeJwt(response.credential)
 
-   let data={ //completar con datos del response.credential
+    let data={ //completar con datos del response.credential
       name:userObj.given_name,
       lastName:userObj.family_name,
       photo:userObj.picture,
@@ -26,16 +24,10 @@ export default function SignInGoogle() {
     }
     setUser(data)
 
-    localStorage.removeItem('user');
-    const dataStorage = JSON.parse(localStorage.getItem('user'))
-
     localStorage.setItem('user', JSON.stringify(data));
     navigate('/cities')
-    window.location.reload()
-        
 
-
-        signInUserGoogle(data)
+      signInUserGoogle(user)
     }
 
     // useEffect(() => {

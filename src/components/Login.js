@@ -4,17 +4,18 @@ import { Link as LinkRouter } from 'react-router-dom'
 import { useAddUserSignOutMutation } from '../features/citiesAPI'
 
 
-const userSession = JSON.parse(localStorage.getItem('user'))
+
 
 
 export default function Login() {
 
     const [signOutUser] = useAddUserSignOutMutation()
-    const [role, setRole] = useState(userSession)
+    const [role, setRole] = useState('')
 
     useEffect(() => {
+        const userSession = JSON.parse(localStorage.getItem('user'))
         setRole(userSession)
-    }, [userSession])
+    }, [role])
 
     function logOut() {
         localStorage.removeItem('user')
@@ -25,9 +26,11 @@ export default function Login() {
             mail: '-',
             role: 'guest'
         }));
-        window.location.reload()
         signOutUser({mail: role.mail})
+        setRole('')
     }    
+
+    
 
     return (
         <div className="Login">
@@ -44,7 +47,6 @@ export default function Login() {
                     <div className='loginLink' onClick={ logOut }>Log out</div>
                 </div>    
                 }
-                
             </div>
         </div>
     )

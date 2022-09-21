@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useAddUserSignUpMutation } from '../features/citiesAPI'
 import * as jose from 'jose'
 import { useAddUserSignInMutation } from '../features/citiesAPI'
@@ -31,7 +31,6 @@ export default function SignUpGoogle() {
     localStorage.setItem('user', JSON.stringify(data));
     
     navigate('/cities')
-    window.location.reload()
 
     signUpUserGoogle(data)
     signInUserGoogle(data)
