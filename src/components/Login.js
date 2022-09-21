@@ -15,7 +15,7 @@ export default function Login() {
     useEffect(() => {
         const userSession = JSON.parse(localStorage.getItem('user'))
         setRole(userSession)
-    }, [role])
+    }, [])
 
     function logOut() {
         localStorage.removeItem('user')
@@ -27,7 +27,7 @@ export default function Login() {
             role: 'guest'
         }));
         signOutUser({mail: role.mail})
-        setRole('')
+        setRole(JSON.parse(localStorage.getItem('user')))
     }    
 
     
