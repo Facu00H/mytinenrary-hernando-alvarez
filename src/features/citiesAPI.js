@@ -21,6 +21,7 @@ endpoints: (builder) => ({/////////////////cieties//////////////////////////////
           GetIdItineraries : builder.query({ query: (id) => `/itineraries/city/${id}` }),
 
 
+
           GetItinerariesUser : builder.query({ query: (user) => `/itineraries/user/${user}` }),
 
 
@@ -48,6 +49,28 @@ endpoints: (builder) => ({/////////////////cieties//////////////////////////////
           body: payload,
         }),         
       }),
+/////////////////////////////////////////////////////Details
+      CreateItinerary: builder.mutation({
+        query: (payload) => ({
+          url: '/itineraries',
+          method: 'POST',
+          body: payload,
+        }),         
+      }),
+      //////////////////////////////////////////itineraries
+      EditItinerary: builder.mutation({
+        query: (payload) => ({
+          url: `/itineraries/${payload.id}`,
+          method: 'PATCH',
+          body: payload,
+        }),         
+      }),
+      RemoveItinerary: builder.mutation({
+        query: (payload) => ({
+          url: `/itineraries/${payload}`,
+          method: 'DELETE',
+        }),         
+      }),
 
 }),
 
@@ -55,6 +78,6 @@ endpoints: (builder) => ({/////////////////cieties//////////////////////////////
 
 
 export default citiesAPI
-export const {useGetAllCitiesQuery,useGetIdItinerariesQuery,useGetItinerariesUserQuery ,useAddUserSignInMutation,useAddUserSignOutMutation,useAddUserSignUpMutation} = citiesAPI
+export const {useGetAllCitiesQuery,useRemoveItineraryMutation,useGetIdItinerariesQuery,useEditItineraryMutation,useCreateItineraryMutation,useGetItinerariesUserQuery ,useAddUserSignInMutation,useAddUserSignOutMutation,useAddUserSignUpMutation} = citiesAPI
 
 
