@@ -3,10 +3,13 @@ import { useEffect, useState } from 'react';
 import axios from 'axios'
 import Arrow from '../components/Arrow'
 import { Link as LinkRouter } from 'react-router-dom'
+import ModalCreate from './Modals/ModalCreate';
 
 export default function Details() {
 
     const [cities, setCities] = useState([])
+    const [itinerary, setItinerary] = useState(false)
+
 
     console.log(cities);
     const queryString = window.location.search.replace('?', '');
@@ -20,14 +23,23 @@ export default function Details() {
     }, [])
 
 
+    const handleNew = ()=>{
+        setItinerary(true)
+    }
+    const handleClose = ()=>{
+        setItinerary(false)
+    }
+
+
     const detailsItem = item => (
         <>
             <div className="details-container">
                 <div className='details-back-btn'>
                     <Arrow>
                         <LinkRouter to="/cities"><input className="arrow-img" type="image" src="https://cdn-icons-png.flaticon.com/512/271/271220.png" alt="Left arrow"></input></LinkRouter>
-                    </Arrow>
                     <p>Go back</p>
+                    </Arrow>
+                    <button onClick={handleNew} className='createButonItiner'>Add New Itinerary</button>
                 </div>
                 <div className="details-img-body">
                     <div>
@@ -46,7 +58,8 @@ export default function Details() {
 
     return (
         <div className='main-content'>
-            {cities.map(detailsItem)}
+            
+           {itinerary?<ModalCreate children={cities[0]} onClose={handleClose}/>:cities.map(detailsItem)}
         </div>
     )
 }
