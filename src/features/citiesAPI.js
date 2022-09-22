@@ -13,7 +13,7 @@ baseQuery: fetchBaseQuery({
 
 
 endpoints: (builder) => ({/////////////////cieties//////////////////////////////////////////////
-          getAllCities: builder.query({ query: () =>  "/cities" }),
+          getAllCities: builder.query({ query: (params) =>  `/cities/${params}` }),
 
 
 
