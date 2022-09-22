@@ -1,41 +1,35 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useAddUserSignInMutation } from '../features/citiesAPI'
 import * as jose from 'jose'
 import { useNavigate } from "react-router-dom";
 
 export default function SignInGoogle() {
-    const buttonDiv = useRef(null)
-    const [signInUserGoogle] = useAddUserSignInMutation()
-    const [user, setUser] = useState({})
-    const navigate = useNavigate();
+  const buttonDiv = useRef(null)
+  const [signInUserGoogle] = useAddUserSignInMutation()
+  const navigate = useNavigate();
 
-    
-    async function handleCredentialResponse(response){
+
+  async function handleCredentialResponse(response) {
     let userObj = jose.decodeJwt(response.credential)
 
-    let data={ //completar con datos del response.credential
-      name:userObj.given_name,
-      lastName:userObj.family_name,
-      photo:userObj.picture,
-      mail:userObj.email,
-      password:userObj.sub,
+    let data = { //completar con datos del response.credential
+      name: userObj.given_name,
+      lastName: userObj.family_name,
+      photo: userObj.picture,
+      mail: userObj.email,
+      password: userObj.sub,
       role: 'user',
-      from:'google'
+      from: 'google'
     }
-    setUser(data)
-
-    localStorage.setItem('user', JSON.stringify(data));
+    try {
+      let res = await signInUserGoogle(data)
+      console.log(res);
+      localStorage.setItem('token', JSON.stringify(res.data.response.token))
+    } catch (error) {
+      console.log(error)
+    }
     navigate('/cities')
-
-      signInUserGoogle(user)
-    }
-
-    // useEffect(() => {
-    //   axios.patch('http://localhost:4000/auth/signin', user)
-    //   .then((response) => console.log(response))
-    //   .catch(err => console.log(err))
-    // }, [user])
-    
+  } 
 
 
     useEffect(()=> {
