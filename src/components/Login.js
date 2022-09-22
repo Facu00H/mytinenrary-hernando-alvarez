@@ -17,6 +17,7 @@ export default function Login() {
         setRole(userSession)
     }, [])
 
+
     function logOut() {
         localStorage.removeItem('user')
         localStorage.setItem('user',  JSON.stringify({
@@ -27,6 +28,7 @@ export default function Login() {
             role: 'guest'
         }));
         signOutUser({mail: role.mail})
+
         setRole(JSON.parse(localStorage.getItem('user')))
     }    
 

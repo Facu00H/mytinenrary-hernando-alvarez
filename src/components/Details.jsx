@@ -20,7 +20,7 @@ export default function Details() {
         axios.get(url)
             .then(res => setCities([res.data.response]))
             .catch(err => console.error(err))
-    }, [])
+    }, [queryString])
 
 
     const handleNew = ()=>{
