@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import { useEffect, useState } from 'react';
 import '../styles/Card.css'
 import { Link as LinkRouter } from 'react-router-dom'
@@ -8,14 +8,35 @@ import {useGetAllCitiesQuery} from '../features/citiesAPI'
 
 const Card = () => {
   
-  const [filterText, setFilterText] = useState('');
+  const [order, setOrder] = useState('')
+  const [value, setValue] = useState('')
+  const [cityOrCountry, setCityOrCountry] = useState('city')
+  const [query, setQuery] = useState('');
+
+  useEffect(()=>{
+    if(value !== ""){
+      setQuery(`?${cityOrCountry}=${value}`)
+    }else{
+      setQuery(`?${cityOrCountry}=all`)
+    }
+    if(value !== "" && order !== ''){
+      setQuery(`?${cityOrCountry}=${value}&order=${order}`)
+    }
+    if(value === '' && order !== ''){
+      setQuery(`?${cityOrCountry}=all&order=${order}`)
+    }
+  },[value, order])
+  
+  // const query = `?${cityOrCountry}=${value}&${order}`
+  
   const {
     data: cities, 
     error,
     isLoading,
     isSuccess,
     isFailed,
-  } = useGetAllCitiesQuery()
+  } = useGetAllCitiesQuery(query);
+  console.log(query)
   
   let filter = []
   if(isLoading){
@@ -25,15 +46,19 @@ const Card = () => {
   }else if(isFailed){
     filter = []
     console.log(error)
-  }
+  };
   
   const handleInput = (e) => {
-    setFilterText(e.target.value)
-  }
-    
-    if(filter.length !== 0){
-      filter = filter.filter( data => data.city.toLowerCase().startsWith(filterText.toLocaleLowerCase()))
-    }
+    setValue(e.target.value)
+  };
+
+    function alphabetFilter(e){
+      setOrder(e.target.value)
+    };
+
+    function CityorCountry(e){
+      setCityOrCountry(e.target.value)
+    };
   
   
   const card = item => {
@@ -44,7 +69,8 @@ const Card = () => {
           <img className="card-img" src={item.photo} alt="" />
         </div>
         <div className="card-content">
-          <h3>{item.city}</h3>
+          <h3>Country: {item.country}</h3>
+          <h3>City: {item.city}</h3>
           <div className="btns-container">
             <LinkRouter className='btn-card' to={'/details?' + item._id}>Details</LinkRouter>
           </div>
@@ -57,7 +83,22 @@ const Card = () => {
     <>
     <div className='input-container'>
       <div className='filter-container'>
-        <input className='filter-text' onInput={handleInput} placeholder='Search city...'></input>
+        <div>
+          <p>Filter by:</p>
+          <label>
+            <input type="radio" name="cityOrCountry" onClick={CityorCountry} value="city"/> City
+          </label>
+          <label>
+            <input type="radio" name="cityOrCountry" onClick={CityorCountry} value="country"/> Country
+          </label>
+        </div>
+        <input className='filter-text' onInput={handleInput} placeholder={cityOrCountry === 'city' ? 'Search City...': 'Search Country...'}></input>
+        <label>
+          <input type="radio" name="Alphabet" onClick={alphabetFilter} value="AZ"/> A-Z
+        </label>
+        <label>
+          <input type="radio" name="Alphabet" onClick={alphabetFilter} value="ZA"/> Z-A
+        </label>
       </div>
     </div>
     <div className="container">
