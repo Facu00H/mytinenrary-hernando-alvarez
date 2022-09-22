@@ -71,7 +71,31 @@ endpoints: (builder) => ({/////////////////cieties//////////////////////////////
           method: 'DELETE',
         }),         
       }),
+//////////////////////////////////////////////comment
+       EditItinerary: builder.mutation({
+         query: (payload) => ({
+           url: `/comment/${payload.id}`,
+           method: 'PATCH',
+           body: payload,
+           headers:  {Authorization: `Bearer ${localStorage.getItem("token")}`}
+         }),         
+       }),
+       RemoveItinerary: builder.mutation({
+         query: (payload) => ({
+           url: `/comment/${payload}`,
+           method: 'DELETE',
+           headers : {Authorization: `Bearer ${localStorage.getItem("token")}`}
+         }),         
+       }),
 
+      CreateItinerary: builder.mutation({
+        query: (payload) => ({
+          url: '/comment',
+          method: 'POST',
+          body: payload,
+          headers : {Authorization: `Bearer ${localStorage.getItem("token")}`}
+        }),         
+      }),
 }),
 
 })
