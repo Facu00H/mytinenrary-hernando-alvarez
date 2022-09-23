@@ -2,35 +2,34 @@ import React from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { useAddLikeMutation } from '../features/citiesAPI';
-import * as jose from 'jose'
 
 const Like = (props) => {
 
     const [likeDislike] = useAddLikeMutation()
     const [like, setLike] = useState('🤍')
-    const [clicked, setClicked] = useState(false)
+    const [likeCount, setLikeCount] = useState(props.like.length)
 
     useEffect(() => {
-        if(props.like.length != 0){
+        if (props.like.includes(props.userId)) {
             setLike('❤️')
         }
-    }, [props.like.length])
+    }, [props.like, props.userId])
 
-    function handleLike () {
-        if(clicked === false && props.like.length === 0){
-            likeDislike(props.itinerary)
+    const handleLike = () => {
+        if (like === '🤍') {
             setLike('❤️')
-            setClicked(true)
-        } else {
+            setLikeCount(likeCount + 1)
             likeDislike(props.itinerary)
+        } else {
             setLike('🤍')
-            setClicked(false)
+            setLikeCount(likeCount - 1)
+            likeDislike(props.itinerary)
         }
     }
 
     return (
         <>
-            <button onClick={handleLike} >{like}{props.like.length}</button>
+            <button onClick={handleLike}>{like}{likeCount}</button>
         </>
     )
 }
