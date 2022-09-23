@@ -58,7 +58,6 @@ const Comments = (props) => {
         if (id === data.user._id || role === 'admin') {
             return (
                 <div className="comments-container">
-                    <button onClick={handleRemove} value={data._id}>delete</button>
                     <div className="comments-user">
                         <img src={data.user.photo} className="comments-user-photo" />
                         <p className='comments-user-info'>{data.user.name}</p>
@@ -66,12 +65,15 @@ const Comments = (props) => {
                     </div>
                     <div className="comments-message-container">
                         <p className='comments-message'>{data.comment}</p>
-                        <button onClick={() => setEdit({
+                    </div>
+                    <div className='comment-edit-delete'>
+                        <button className='edit-button' onClick={() => setEdit({
                             id: data.user._id,
                             name: data.user.name,
                             photo: data.user.photo,
                             idComment: data._id
-                        }) & setShow(true)}>edit</button>
+                        }) & setShow(true)}><img src={'./assets/svg/bx-edit-alt.svg'}/></button>
+                        <button className='delete-button' onClick={handleRemove} value={data._id}><img src={'./assets/svg/bx-trash.svg'} /></button>
                     </div>
                 </div>
             )
@@ -96,10 +98,9 @@ const Comments = (props) => {
 
 
     return (
-        <div>
-            <button onClick={handleCreate}>Add Comment</button>
+        <div className='comments-main-container'>
+            <button className='add-comment-button' onClick={handleCreate}><img src={'./assets/svg/bx-comment-add.svg'} /></button>
             {create ? <ModalCreateComment children={{ idItiner: props.itinerary, idUser: id }} onClose={handleClose} /> : show ? <ModalEditComment children={edit} onClose={handleClose} /> : comments.map(cardComment)}
-
         </div>
     )
 }
