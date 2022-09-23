@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+import { useRemoveItineraryMutation } from '../features/citiesAPI';
 import '../styles/Itinerary.css'
 import Comments from './Comments';
 import Activity from './Activities'
@@ -8,8 +9,9 @@ import Like from './Like';
 import { useSelector } from 'react-redux'
 
 const Itinerary = () => {
-
+const [deleItiner]=useRemoveItineraryMutation()
   const id = useSelector(state => state.auth.id)
+  const role = useSelector(state => state.auth.role)
 
   const [visibility, setVisibility] = useState(false)
   const queryString = window.location.search.replace('?', '');
@@ -46,12 +48,21 @@ const Itinerary = () => {
 
 
   console.log(data);
-  
 
+  const handleDelete =(e)=>{
+    let remove = (e.target.value)
+    if(role === 'admin'){
+      deleItiner(remove)
+    }
+
+  }
+  
+  
   const cardItinerary = (data) => {
     
     return (
       <div className="card-itinerary">
+        <button onClick={handleDelete} value={data._id}>X</button>
         <div className="title-itinerary">
           <h3>{data.name}</h3>
         </div>
