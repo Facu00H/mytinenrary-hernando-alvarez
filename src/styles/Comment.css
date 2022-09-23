@@ -30,6 +30,57 @@
     padding: 5px;
 }
 
+.delete-button {
+    background: none;
+    border: 0;
+    color: inherit;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.edit-button:hover {
+    opacity: 0.6;
+    transition: 0.3s;
+}
+
+.delete-button:hover {
+    opacity: 0.6;
+    transition: 0.3s;
+}
+
+.add-comment-button {
+    background: none;
+    border: 0;
+    color: inherit;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.comments-main-container {
+    display: flex;
+    width: 90%;
+    margin: auto;
+}
+
+.add-comment-button:hover {
+    opacity: 0.6;
+    transition: 0.3s;
+}
+
+.edit-button {
+    background: none;
+    border: 0;
+    color: inherit;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.comment-edit-delete {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
 @media (min-width:768px) {
     .comments-container {
         width: 80%;
@@ -37,9 +88,29 @@
     }
 }
 
-@media (min-width:320px) {
+@media (max-width: 425px) {
     .comments-container {
         width: 80%;
         margin: auto;
+    }
+
+    .comments-main-container {
+        flex-direction: column;
+        width: 90%;
+        margin: auto;
+    }
+
+    .comments-container {
+        flex-direction: column;
+        width: 90%;
+        margin: auto;
+    }
+
+    .comments-user {
+        margin: auto;
+    }
+
+    .comment-edit-delete {
+        flex-direction: row;
     }
 }
