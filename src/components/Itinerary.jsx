@@ -47,8 +47,6 @@ const Itinerary = () => {
   };
 
 
-  console.log(data);
-
   const handleDelete = (e) => {
     let remove = (e.target.value)
     if (role === 'admin') {

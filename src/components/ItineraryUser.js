@@ -27,10 +27,9 @@ export default function EventItineraries() {
 
     const handleDelete = (e) => {
         let remove = e.target.value
-        console.log(remove)
         destroyItinerary(remove)
             .unwrap()
-            .then(() => { console.log('entro') })
+            .then(() => {})
             .then((error) => {
                 console.log(error)
             })
@@ -65,8 +64,6 @@ export default function EventItineraries() {
         </div>
 
     )
-
-    console.log(input)
 
     return (
         <div>

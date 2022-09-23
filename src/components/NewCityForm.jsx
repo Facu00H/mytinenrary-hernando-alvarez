@@ -2,6 +2,7 @@ import React from 'react';
 import Swal from 'sweetalert2';
 import { useState, useEffect} from 'react'
 import axios from 'axios'
+import APIurl from '../APIBack'
 
 const NewCityForm = () => {
 
@@ -56,8 +57,8 @@ const NewCityForm = () => {
 
     }else{
 
-      axios.post('http://localhost:4000/cities/', formValues)
-        .then((response) => console.log(response))
+      axios.post(`${APIurl}/cities/`, formValues)
+        .then((response) => {})
         .catch((error) => console.log(error))
 
         Swal.fire({

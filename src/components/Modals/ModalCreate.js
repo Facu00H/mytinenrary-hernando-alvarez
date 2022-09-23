@@ -61,7 +61,6 @@ export default function ModalCreate({ children, onClose }) {
   const handleSubmit = (e) => {
     e.preventDefault()
     //mandarlo al controlador create
-    console.log(edit)
 
     if (edit.name.length <= 1) {
       Swal.fire({

@@ -4,17 +4,16 @@ import axios from 'axios'
 import Arrow from '../components/Arrow'
 import { Link as LinkRouter } from 'react-router-dom'
 import ModalCreate from './Modals/ModalCreate';
+import APIurl from '../APIBack'
 
 export default function Details() {
 
     const [cities, setCities] = useState([])
     const [itinerary, setItinerary] = useState(false)
 
-
-    console.log(cities);
     const queryString = window.location.search.replace('?', '');
 
-    let url = `http://localhost:4000/cities/${queryString}`
+    let url = `${APIurl}/cities/${queryString}`
 
     useEffect(() => {
         axios.get(url)

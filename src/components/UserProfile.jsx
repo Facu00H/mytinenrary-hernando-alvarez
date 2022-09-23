@@ -6,7 +6,6 @@ export default function UserProfile() {
 
   
   const user = useSelector(state => state.auth.user)
-  console.log(user)
 
   return (
     <div className="container">

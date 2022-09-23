@@ -2,12 +2,13 @@ import {
   createApi,
   fetchBaseQuery
 } from '@reduxjs/toolkit/query/react'
+import APIurl from '../APIBack'
 
 const citiesAPI = createApi({
   reducerPath: "citiesAPI",
 
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:4000/",
+    baseUrl: `${APIurl}`,
   }),
   ////////////////////////////////////////Get methods//////////////////////////////////////////////////
 

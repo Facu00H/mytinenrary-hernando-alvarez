@@ -19,9 +19,7 @@ export default function SignUpGoogle() {
   
 
     async function handleCredentialResponse(response){
-        console.log(response.credential)
     let userObj =   jose.decodeJwt(response.credential)
-    console.log(userObj)
 
     let data={ //completar con datos del response.credential
         name:userObj.given_name,
@@ -59,9 +57,6 @@ export default function SignUpGoogle() {
             { theme: "outline", size: "large" }  // customization attributes
           );
     },[])
-
-    // const cat = localStorage.getItem('user')
-    // console.log(JSON.parse(cat))
 
 
   return (
