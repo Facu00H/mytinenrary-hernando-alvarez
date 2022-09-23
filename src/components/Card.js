@@ -49,7 +49,7 @@ const Card = () => {
   };
   
   const handleInput = (e) => {
-    setValue(e.target.value)
+    setValue(e.target.value.trim().charAt(0).toUpperCase() + e.target.value.slice(1))
   };
 
     function alphabetFilter(e){
