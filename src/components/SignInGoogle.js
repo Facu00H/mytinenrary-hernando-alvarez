@@ -24,7 +24,7 @@ export default function SignInGoogle() {
     try {
       let res = await signInUserGoogle(data)
       console.log(res);
-      localStorage.setItem('token', JSON.stringify(res.data.response.token))
+      localStorage.setItem('token', res.data.response.token)
     } catch (error) {
       console.log(error)
     }
