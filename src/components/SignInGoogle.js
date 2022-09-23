@@ -23,7 +23,6 @@ export default function SignInGoogle() {
       photo: userObj.picture,
       mail: userObj.email,
       password: userObj.sub,
-      // role: 'user',
       from: 'google'
     }
     try {
