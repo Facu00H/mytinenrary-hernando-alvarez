@@ -42,6 +42,14 @@ endpoints: (builder) => ({/////////////////cieties//////////////////////////////
         }),          
       }),
 
+      signInToken: builder.mutation({
+        query: (token) => ({
+            url: '/auth/token',
+            method: 'GET',
+            headers: {Authorization: 'Bearer '+token}
+        })
+      }),
+
       AddUserSignOut: builder.mutation({
         query: (payload) => ({
           url: '/auth/signout',
@@ -78,6 +86,16 @@ endpoints: (builder) => ({/////////////////cieties//////////////////////////////
 
 
 export default citiesAPI
-export const {useGetAllCitiesQuery,useRemoveItineraryMutation,useGetIdItinerariesQuery,useEditItineraryMutation,useCreateItineraryMutation,useGetItinerariesUserQuery ,useAddUserSignInMutation,useAddUserSignOutMutation,useAddUserSignUpMutation} = citiesAPI
+export const {
+  useGetAllCitiesQuery,
+  useRemoveItineraryMutation,
+  useGetIdItinerariesQuery,
+  useEditItineraryMutation,
+  useCreateItineraryMutation,
+  useGetItinerariesUserQuery ,
+  useAddUserSignInMutation,
+  useAddUserSignOutMutation,
+  useAddUserSignUpMutation,
+  useSignInTokenMutation} = citiesAPI
 
 
