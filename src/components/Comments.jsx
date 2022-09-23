@@ -5,10 +5,12 @@ import '../styles/Comment.css'
 import ModalCreateComment from './Modals/ModalCreateComment'
 import ModalEditComment from './Modals/ModalEditComment'
 import { useRemoveCommentMutation } from '../features/citiesAPI'
-import * as jose from 'jose'
+import { useSelector } from 'react-redux'
 
 const Comments = (props) => {
 
+    const id = useSelector(state => state.auth.id)
+    const role = useSelector(state => state.auth.role)
     const [comments, setComments] = useState([])
     const [create, setCreate] = useState(false)
     const [show, setShow] = useState(false)
@@ -51,10 +53,9 @@ const Comments = (props) => {
     }, [props.itinerary])
 
 
-    let tokenDecoded = jose.decodeJwt(localStorage.getItem('token'))
-
     const cardComment = (data) => {
-        if (tokenDecoded.id === data.user._id) {
+        console.log(data)
+        if (id === data.user._id || role === 'admin') {
             return (
                 <div className="comments-container">
                     <button onClick={handleRemove} value={data._id}>delete</button>
@@ -97,7 +98,7 @@ const Comments = (props) => {
     return (
         <div>
             <button onClick={handleCreate}>Add Comment</button>
-            {create ? <ModalCreateComment children={{ idItiner: props.itinerary, idUser: tokenDecoded.id }} onClose={handleClose} /> : show ? <ModalEditComment children={edit} onClose={handleClose} /> : comments.map(cardComment)}
+            {create ? <ModalCreateComment children={{ idItiner: props.itinerary, idUser: id }} onClose={handleClose} /> : show ? <ModalEditComment children={edit} onClose={handleClose} /> : comments.map(cardComment)}
 
         </div>
     )
