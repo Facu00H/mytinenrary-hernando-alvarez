@@ -4,14 +4,17 @@ import { useEffect, useState } from 'react'
 import '../styles/Comment.css'
 import ModalCreateComment from './Modals/ModalCreateComment'
 import ModalEditComment from './Modals/ModalEditComment'
+import { useRemoveCommentMutation } from '../features/citiesAPI'
+import * as jose from 'jose'
 
 const Comments = (props) => {
 
     console.log(props)
     const [comments, setComments] = useState([])
-    const [create,setCreate]=useState(false)
-    const [show,setShow]=useState(false)
-    const [edit,setEdit]=useState({})
+    const [create, setCreate] = useState(false)
+    const [show, setShow] = useState(false)
+    const [edit, setEdit] = useState({})
+    const [removeComment] = useRemoveCommentMutation()
 
 
 
@@ -23,18 +26,19 @@ const Comments = (props) => {
 
 
 
-    const handleCreate = ()=>{
+    const handleCreate = () => {
         setCreate(true)
     }
 
-    const handleClose = ()=>{
+    const handleClose = () => {
         setCreate(false)
         setShow(false)
     }
 
-    const handleRemove=(e)=>{
+    const handleRemove = (e) => {
         let remove = e.target.value
         //mutation para eliminar
+        removeComment(remove)
     }
 
 
@@ -48,11 +52,11 @@ const Comments = (props) => {
     }, [props.itinerary])
 
 
-
-
+    let tokenDecoded = jose.decodeJwt(localStorage.getItem('token'))
 
     const cardComment = (data) => {
-        if(userLocal.name === data.user._id){
+        console.log(tokenDecoded.id);
+        if (tokenDecoded.id === data.user._id) {
             return (
                 <div className="comments-container">
                     <button onClick={handleRemove} value={data._id}>delete</button>
@@ -63,15 +67,17 @@ const Comments = (props) => {
                     </div>
                     <div className="comments-message-container">
                         <p className='comments-message'>{data.comment}</p>
-                        <button onClick={()=>setEdit({id:data.user._id,
-                                                       name:data.user.name,
-                                                       photo:data.user.photo,
-                                                       idComment : data._id   }) & setShow(true)}>edit</button>
+                        <button onClick={() => setEdit({
+                            id: data.user._id,
+                            name: data.user.name,
+                            photo: data.user.photo,
+                            idComment: data._id
+                        }) & setShow(true)}>edit</button>
                     </div>
                 </div>
             )
 
-        }else{
+        } else {
             return (
                 <div className="comments-container">
                     <div className="comments-user">
@@ -93,8 +99,8 @@ const Comments = (props) => {
     return (
         <div>
             <button onClick={handleCreate}>Add Comment</button>
-            {create?<ModalCreateComment children={{idItiner : props.itinerary,}} onClose={handleClose}/>:show?<ModalEditComment children={edit} onClose={handleClose}/>:comments.map(cardComment)}
-           
+            {create ? <ModalCreateComment children={{ idItiner: props.itinerary, idUser: tokenDecoded.id }} onClose={handleClose} /> : show ? <ModalEditComment children={edit} onClose={handleClose} /> : comments.map(cardComment)}
+
         </div>
     )
 }
