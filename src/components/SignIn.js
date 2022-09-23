@@ -60,7 +60,6 @@ async function handleSubmit (e) {
 
     try {
         let res = await signInUser(user)
-        console.log(res);
         dispatch(setCredentials(res.data.response.user))
         localStorage.setItem('token',res.data.response.token)
         navigate('/cities') 
