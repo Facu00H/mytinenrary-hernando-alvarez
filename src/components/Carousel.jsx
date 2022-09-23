@@ -11,7 +11,7 @@ export default function Carousel() {
   const [cities, setCities] = useState([])
 
   useEffect(() => {
-    axios.get('http://localhost:4000/cities/')
+    axios.get('http://localhost:4000/cities/?city=all')
     .then( res => setCities(res.data.response))
     .catch( err => console.error(err))
   }, [])
