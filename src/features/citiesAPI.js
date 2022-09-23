@@ -42,20 +42,20 @@ const citiesAPI = createApi({
       }),
     }),
 
-      signInToken: builder.mutation({
-        query: (token) => ({
-            url: '/auth/token',
-            method: 'GET',
-            headers: {Authorization: 'Bearer '+token}
-        })
-      }),
+    signInToken: builder.mutation({
+      query: (token) => ({
+        url: '/auth/token',
+        method: 'GET',
+        headers: { Authorization: 'Bearer ' + token }
+      })
+    }),
 
-      AddUserSignOut: builder.mutation({
-        query: (payload) => ({
-          url: '/auth/signout',
-          method: 'POST',
-          body: payload,
-        }),         
+    AddUserSignOut: builder.mutation({
+      query: (payload) => ({
+        url: '/auth/signout',
+        method: 'POST',
+        body: payload,
+      }),
     }),
     /////////////////////////////////////////////////////Details
     CreateItinerary: builder.mutation({
@@ -151,11 +151,15 @@ export const {
   useGetIdItinerariesQuery,
   useEditItineraryMutation,
   useCreateItineraryMutation,
-  useGetItinerariesUserQuery ,
+  useGetItinerariesUserQuery,
   useAddUserSignInMutation,
   useAddUserSignOutMutation,
   useAddUserSignUpMutation,
-  useSignInTokenMutation
- } = citiesAPI
+  useSignInTokenMutation,
+  useAddLikeMutation,
+  useEditCommentMutation,
+  useRemoveCommentMutation,
+  useCreateCommentMutation,
+} = citiesAPI
 
 
