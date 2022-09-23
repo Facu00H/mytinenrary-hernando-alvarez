@@ -1,0 +1,474 @@
+Mercado Pago dashboard 
+
+mercado pago ofrece una solucion integral para pagos en linea disponibles para web predeterminadas (wix) y webs en general
+
+paso 1 obtener las credenciales de la api y generar nuestra propia clave para trabajar con esas credenciales 
+
+paso 2 MercadoPago.js te permite gestionar los datos de la tarjeta para cumplir con los requerimientos de seguridad necesarios y evitar el envío de datos sensibles a tus servidores
+
+<!-- <script src="https://sdk.mercadopago.com/js/v2"></script> -->
+
+paso 3 instalar SDK   npm install mercadopago
+
+
+
+paso 4 
+ tu backend debería disponibilizar un endpoint /process_payment, para recibir allí todos los datos luego de realizar la acción submit.
+
+Ya estando en tu backend con toda la información recolectada, es momento de enviar la solicitud a Mercado Pago a través de nuestras APIs. Los campos mínimos requeridos a enviar son: token, transaction_amount, installments, payment_method_id y el payer.email.
+
+Ten en cuenta que para que este paso funcione es necesario que configures tu clave privada y que para interactuar con nuestras APIs recomendamos utilizar la SDK oficial de Mercado Pago.
+
+
+var mercadopago = require('mercadopago');
+mercadopago.configurations.setAccessToken("YOUR_ACCESS_TOKEN");
+
+var payment_data = {
+  transaction_amount: Number(req.body.transactionAmount),
+  token: req.body.token,
+  description: req.body.description,
+  installments: Number(req.body.installments),
+  payment_method_id: req.body.paymentMethodId,
+  issuer_id: req.body.issuer,
+  payer: {
+    email: req.body.email,
+    identification: {
+      type: req.body.docType,
+      number: req.body.docNumber
+    }
+  }
+};
+
+mercadopago.payment.save(payment_data)
+  .then(function(response) {
+    res.status(response.status).json({
+      status: response.body.status,
+      status_detail: response.body.status_detail,
+      id: response.body.id
+    });
+  })
+  .catch(function(error) {
+    res.status(response.status).send(error);
+  });
+
+
+///////////////////////////////////////////////////////////////////////// Respuesta
+{
+    "status": "approved",
+    "status_detail": "accredited",
+    "id": 3055677,
+    "date_approved": "2019-02-23T00:01:10.000-04:00",
+    "payer": {
+        ...
+    },
+    "payment_method_id": "visa",
+    "payment_type_id": "credit_card",
+    "refunds": [],
+    ...
+}
+
+
+
+///////////////////////////////////////////////////////////
+Integrar otros medios de pago
+Con el Checkout API de Mercado Pago puedes sumar otras alternativas de medios de pago para ofrecer a tus clientes a la hora de realizar el pago.
+
+¿Cómo funciona?
+Para recibir otros medios de pago, tienes que tener en cuenta dos instancias:
+
+Primero, necesitas un frontend para que recolecte el e-mail y documento de tu cliente y el método de pago y detalle del monto.
+Segundo, un backend que tome los datos del pago y pueda confirmar y efectuar el pago.
+Tanto para el frontend como para el backend, recomendamos utilizar nuestras librerías para poder recolectar los datos sensibles de tus usuarios de manera segura.
+
+Además de tarjetas, también existen otras opciones de pago que puedes ofrecer en tu sitio.
+
+
+          
+var mercadopago = require('mercadopago');
+mercadopago.configurations.setAccessToken(config.access_token);
+
+payment_methods = mercadopago.get("/v1/payment_methods");
+
+        
+
+El resultado será un listado con los medios de pago y sus propiedades. Por ejemplo, los medios de pago del payment_type_id que tienen como valor ticket refieren a medio de pago en efectivo.
+
+Ten en cuenta que la respuesta devolverá todos los medios de pago. Por eso, tienes que filtrar los medios que quieras ofrecer según la lista de medios de pago disponibles.
+
+[
+    {
+        "id": "rapipago",
+        "name": "Rapipago",
+        "payment_type_id": "ticket",
+        "status": "active",
+        "secure_thumbnail": "https://www.mercadopago.com/org-img/MP3/API/logos/2002.gif",
+        "thumbnail": "http://img.mlstatic.com/org-img/MP3/API/logos/2002.gif",
+        "deferred_capture": "does_not_apply",
+        "settings": [],
+        "additional_info_needed": []
+    },
+    {
+        "id": "redlink",
+        "name": "RedLink",
+        "payment_type_id": "atm",
+        "status": "active",
+        "secure_thumbnail": "https://www.mercadopago.com/org-img/MP3/API/logos/2003.gif",
+        "thumbnail": "http://img.mlstatic.com/org-img/MP3/API/logos/2003.gif",
+        "deferred_capture": "does_not_apply",
+        "settings": [],
+        "additional_info_needed": []
+    },
+    {
+        "...": "..."
+    }
+]
+
+
+
+
+
+
+   2. Agrega el formulario de pago
+Para realizar la captura de datos sensibles de tus clientes, es muy importante que utilices nuestro formulario con los atributos correspondientes para garantizar la seguridad de la información.
+
+Utiliza la lista que consultaste en Obtén los medios de pago disponibles para crear las opciones de pagos que quieres ofrecer.
+
+Agrega el siguiente formulario con los estilos que desees.
+
+<!-- <form action="/process_payment" method="post" id="paymentForm">
+    <h3>Medio de pago</h3>
+    <div>
+      <select class="form-control" id="paymentMethod" name="paymentMethod">
+        <option>Seleccione un medio de pago</option> -->
+
+        <!-- Create an option for each payment method with their name and complete the ID in the attribute 'value'. -->
+        <option value="--PaymentTypeId--">--PaymentTypeName--</option>
+      </select>
+    </div>
+    <h3>Detalles del comprador</h3>
+    <div>
+    <div>
+        <label for="payerFirstName">Nombre</label>
+        <input id="payerFirstName" name="payerFirstName" type="text" value="Nome"></select>
+      </div>
+      <div>
+        <label for="payerLastName">Apellido</label>
+        <input id="payerLastName" name="payerLastName" type="text" value="Sobrenome"></select>
+      </div>
+      <div>
+        <label for="payerEmail">E-mail</label>
+        <input id="payerEmail" name="payerEmail" type="text" value="test@test.com"></select>
+      </div>
+      <div>
+        <label for="docType">Tipo de documento</label>
+        <select id="docType" name="docType" data-checkout="docType" type="text"></select>
+      </div>
+      <div>
+        <label for="docNumber">Número de documento</label>
+        <input id="docNumber" name="docNumber" data-checkout="docNumber" type="text"/>
+      </div>
+    </div>
+
+    <div>
+      <div>
+        <input type="hidden" name="transactionAmount" id="transactionAmount" value="100" />
+        <input type="hidden" name="productDescription" id="productDescription" value="Nombre del Producto" />
+        <br>
+        <button type="submit">Pagar</button>
+        <br>
+      </div>
+  <!-- </div>
+</form> -->
+      3. Configura tu clave pública
+Agrega tu clave pública de la siguiente manera:
+
+const mp = new MercadoPago("YOUR_PUBLIC_KEY");
+Si aún no tienes cuenta para ver tus credenciales, regístrate .
+      4. Obtén los datos para tu formulario
+        Obtener tipos de documentos
+Uno de los campos obligatorios es el tipo de número de documento. Utiliza la lista de documentos al momento de completar los datos.
+
+Incluyendo el elemento de tipo select con id = docType que se encuentra en el formulario, MercadoPago.js completará automáticamente las opciones disponibles cuando llames a la siguiente función:
+
+// Step #getIdentificationTypes
+
+// Helper function to append option elements to a select input
+function createSelectOptions(elem, options, labelsAndKeys = { label : "name", value : "id"}){
+   const {label, value} = labelsAndKeys;
+
+   elem.options.length = 0;
+
+   const tempOptions = document.createDocumentFragment();
+
+   options.forEach( option => {
+       const optValue = option[value];
+       const optLabel = option[label];
+
+       const opt = document.createElement('option');
+       opt.value = optValue;
+       opt.textContent = optLabel;
+
+       tempOptions.appendChild(opt);
+   });
+
+   elem.appendChild(tempOptions);
+}
+
+// Get Identification Types
+(async function getIdentificationTypes () {
+   try {
+       const identificationTypes = await mp.getIdentificationTypes();
+       const docTypeElement = document.getElementById('docType');
+
+       createSelectOptions(docTypeElement, identificationTypes)
+   }catch(e) {
+       return console.error('Error getting identificationTypes: ', e);
+   }
+})()
+
+////////////////////////////////////////////////////////////////////////////////////////
+Para agregar nuevas tarjetas a un cliente, debes crear un token y hacer un HTTP POST
+
+
+          
+var mercadopago = require('mercadopago');
+mercadopago.configure({
+    access_token: 'ENV_ACCESS_TOKEN'
+});
+
+var filters = {
+  id: "247711297-jxOV430go9fx2e"
+};
+
+mercadopago.customers.search({
+  qs: filters
+}).then(function (customer) {
+  card_data = {
+    "token": "9b2d63e00d66a8c721607214cedaecda",
+    "customer": customer.id,
+    "issuer_id": "3245612",
+    "payment_method_id": "debit_card"
+  }
+
+  mercadopago.cards.create(card_data).then(function (card) {
+    console.log(card);
+  });
+});
+
+
+
+        
+        Respuesta
+{
+    "id": "1493990563105",
+    "expiration_month": 12,
+    "expiration_year": 2020,
+    "first_six_digits": "503175",
+    "last_four_digits": "0604",
+    "payment_method": {
+        "id": "master",
+        "name": "master",
+        "payment_type_id": "credit_card",
+        "thumbnail": "http://img.mlstatic.com/org-img/MP3/API/logos/master.gif",
+        "secure_thumbnail": "https://www.mercadopago.com/org-img/MP3/API/logos/master.gif"
+    },
+    "security_code": {
+        "length": 3,
+        "card_location": "back"
+    },
+    "issuer": {
+        "id": 3,
+        "name": "Mastercard"
+    },
+    "cardholder": {
+        "name": "Card holdername",
+
+        "identification": {
+            "number": "12345678",
+            "type": "DNI"
+        }
+
+    },
+    "date_created": "2017-05-05T09:22:30.893-04:00",
+    "date_last_updated": "2017-05-05T09:22:30.893-04:00",
+    "customer_id": "255276729-yLOTNHQjpDWw1X",
+    "user_id": "255276729",
+    "live_mode": false
+}
+
+
+ Muestra las tarjetas guardadas a tu cliente
+Primero, obtén el listado de guardadas para que tu cliente pueda elegir con cuál quiere pagar:
+
+        
+  var filters = {
+    id: customer_id
+  };
+
+  mercadopago.customers.search({
+    qs: filters
+  }).then(function (customer) {
+    console.log(customer);
+  });
+
+
+
+armar el formulario
+
+
+<!-- <li>
+   <label>Payment Method:</label>
+   <select id="cardId" name="cardId"></select>
+</li>
+<li id="cvv">
+   <label for="cvv">Security code:</label>
+   <input type="text" id="cvv" placeholder="123" />
+</li>
+<script>
+   const customerCards = [{
+       "id": "3502275482333",
+       "last_four_digits": "9999",
+       "payment_method": {
+           "name": "amex",
+       },
+       "security_code": {
+           "length": 4,
+       }
+   }];
+
+   // Append customer cards to select element
+   const selectElement = document.getElementById('cardId');
+   const tmpFragment = document.createDocumentFragment();
+   customerCards.forEach(({id, last_four_digits, payment_method}) => {
+       const optionElement = document.createElement('option');
+       optionElement.setAttribute('value', id)
+       optionElement.textContent = `${payment_method.name} ended in ${last_four_digits}`
+       tmpFragment.appendChild(optionElement);
+   })
+   selectElement.appendChild(tmpFragment)
+</script> -->
+
+
+
+
+
+Captura el código de seguridad
+
+(async function createToken() {
+       try {
+           const token = await mp.createCardToken({
+               cardId: document.getElementById('cardId').value,
+               securityCode: document.getElementById('cvv').value,
+           })
+
+            // Use the received token to make a POST request to your backend
+           console.log('token received: ', token.id)
+       }catch(e) {
+           console.error('error creating token: ', e)
+       }
+   })()
+
+
+
+
+   Crea el pago
+
+   var mercadopago = require('mercadopago');
+mercadopago.configurations.setAccessToken(config.access_token);
+
+var payment_data = {
+  transaction_amount: 100,
+  token: 'ff8080814c11e237014c1ff593b57b4d',
+  installments: 1,
+  payer: {
+    type: "customer",
+    id: "123456789-jxOV430go9fx2e"
+  }
+};
+
+mercadopago.payment.create(payment_data).then(function (data) {
+  console.log(data);
+});
+
+
+
+    Busca un cliente creado
+Puedes buscar información sobre tu cliente si lo necesitas. Por ejemplo, en el caso que no sepas cuál es el ID asignado. El parámetro requerido para obtenerlo es el e-mail.
+
+var filters = {
+    email: "test@test.com"
+  };
+
+  mercadopago.customers.search({
+    qs: filters
+  }).then(function (customer) {
+    console.log(customer);
+  });
+
+
+
+ Consulta el listado de tarjetas de un cliente
+          
+  var filters = {
+    id: customer_id
+  };
+
+  mercadopago.customers.search({
+    qs: filters
+  }).then(function (customer) {
+    console.log(customer);
+  });
+
+
+        
+        Respuesta
+[{
+    "id": "1490022319978",
+    "expiration_month": 12,
+    "expiration_year": 2020,
+    "first_six_digits": "415231",
+    "last_four_digits": "0001",
+    ...
+}]
+
+
+
+
+Cuando tengas lista tu integración y quieras comenzar a recibir pagos, tienes que activar tus credenciales.
+
+
+
+¿Por qué es necesario este proceso?
+Con este proceso, se puede garantizar la seguridad de los datos de tus clientes, el cumplimiento de las normas o disposiciones legales de cada país y lograr la mejor experiencia de compra para tus ventas.
+
+Conoce los términos y condiciones de Mercado Pago.
+
+¿Qué validamos?
+Con el fin de asegurar tanto la mejor calidad de integración como experiencia de usuario para el cliente final, desde Mercado Pago necesitamos que se cumplan ciertos requisitos antes de salir a producción.
+
+Seguridad
+      Usa las librerías oficiales y cuida la seguridad de los datos
+Por un lado, es importante que utilices la librería MercadoPago.js como es provista por Mercado Pago. No puedes modificarla ni alojarla en tus servidores. Y por otro lado, asegúrate de no incluir el atributo name al crear un formulario de tarjeta para cuidar la seguridad de los datos.
+
+Estas medidas permiten cuidar los datos sensibles, cumplir con los estándares de seguridad requeridos y mantenerte siempre actualizado.
+
+      No te olvides de contar con un certificado SSL
+Para que seas seguro y que puedas cuidar los datos, es necesario que tengas un certificado SSL válido y que el formulario de pagos sea disponibilizado en una página HTTPS. Esto permite proteger las transacciones que realicen los compradores y sus datos. Durante las pruebas puedes no tenerlo pero es obligatorio para salir a producción.
+
+Envío de información
+Para evitar que un pago real se rechace por no cumplir con las validaciones de seguridad, es necesario sumar toda la información posible a la hora de realizar la operación.
+
+Para optimizar la validación de seguridad de los pagos y mejorar las aprobaciones, puedes enviarnos los datos del comprador y del ítem para que los analicemos. Por ejemplo, si nos envías esta información, podemos detectar si ese comprador realizó pagos sospechosos en otro momento y prevenirlo.
+
+Puedes ver más información en la sección de Mejora la aprobación.
+
+Notificaciones y búsqueda de pagos
+Para poder aprovechar al máximo los beneficios de la integración de Mercado Pago, uno de los puntos claves a destacar es la utilización de notificaciones para la actualización de los pedidos en tiempo real en tu sistema. Ambos tipos de notificaciones, IPN o Webhooks, se envían de un servidor a otro mediante una llamada HTTP POST en relación a tus transacciones. Implementando estas notificaciones, podrás enterarte de todas las actualizaciones de tus transacciones en el momento.
+
+Experiencia de usuario
+      Mostrar los correctos mensajes de respuesta
+Como se menciona en la sección de Mensajes de respuesta, se le deben mostrar los mensajes correspondientes al cliente, dependiendo el resultado del pago, para que el mismo pueda accionar de la manera correcta.
+
+      Sé transparente con las promociones y financiación
+Debes aclarar que las promociones son ofrecidas por Mercado Pago. Puedes incluir un banner de medios de pago o sumar el link a la sección de promociones. Como también, debes informar los costos de financiación que aplican a tus clientes.
+

@@ -36,20 +36,24 @@ const Card = () => {
     isSuccess,
     isFailed,
   } = useGetAllCitiesQuery(query);
-  console.log(query)
   
   let filter = []
   if(isLoading){
     filter = []
   }else if(isSuccess){
     filter = cities.response
+    if(filter === []){
+      filter = []
+    }
   }else if(isFailed){
-    filter = []
+    filter = undefined
     console.log(error)
   };
+
+  console.log(filter)
   
   const handleInput = (e) => {
-    setValue(e.target.value)
+    setValue(e.target.value.trim().charAt(0).toUpperCase() + e.target.value.slice(1))
   };
 
     function alphabetFilter(e){
@@ -83,26 +87,27 @@ const Card = () => {
     <>
     <div className='input-container'>
       <div className='filter-container'>
-        <div>
-          <p>Filter by:</p>
-          <label>
+        <div className='filterCheck'>
+          <p className='labelInp'>Filter by:</p>
+          <label className='labelInp'>
             <input type="radio" name="cityOrCountry" onClick={CityorCountry} value="city"/> City
           </label>
-          <label>
+          <label className='labelInp'>
             <input type="radio" name="cityOrCountry" onClick={CityorCountry} value="country"/> Country
           </label>
-        </div>
-        <input className='filter-text' onInput={handleInput} placeholder={cityOrCountry === 'city' ? 'Search City...': 'Search Country...'}></input>
-        <label>
+          <label className='labelInp'>
           <input type="radio" name="Alphabet" onClick={alphabetFilter} value="AZ"/> A-Z
         </label>
-        <label>
+        <label className='labelInp'>
           <input type="radio" name="Alphabet" onClick={alphabetFilter} value="ZA"/> Z-A
         </label>
+        </div>
+        <input className='filter-text' onInput={handleInput} placeholder={cityOrCountry === 'city' ? 'Search City...': 'Search Country...'}></input>
+
       </div>
     </div>
     <div className="container">
-      {filter.map(card)}
+      {filter.length !== 0 ? filter.map(card) : <div>Search not found</div>}
     </div>
     </>
   );
