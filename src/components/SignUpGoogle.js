@@ -38,7 +38,6 @@ export default function SignUpGoogle() {
     signUpUserGoogle(data)
     try {
       let res = await signInUserGoogle(data)
-      console.log(res);
       dispatch(setCredentials(res.data.response.user))
       localStorage.setItem('token',res.data.response.token)
     } catch (error) {
