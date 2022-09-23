@@ -64,7 +64,7 @@ export default function ModalEditComment({ children, onClose }) {
 
   return (
     <div className='createItiner'>
-      <h3 className="createH3">Create your Comment </h3>
+      <h3 className="createH3">Write your new comment</h3>
       <p >Comment  </p>
       <input type='text' onChange={handleComent}></input>
 
