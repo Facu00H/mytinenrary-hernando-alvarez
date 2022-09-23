@@ -3,6 +3,8 @@ import Swal from 'sweetalert2'
 import '../styles/Sign.css'
 import React, { useEffect,useState } from 'react'
 import SignUpGoogle from './SignUpGoogle'
+
+
 export default function SignUp() {
 
 let [name,setName]=useState()

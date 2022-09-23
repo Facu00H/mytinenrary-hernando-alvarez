@@ -3,10 +3,15 @@ import { useAddUserSignUpMutation } from '../features/citiesAPI'
 import * as jose from 'jose'
 import { useAddUserSignInMutation } from '../features/citiesAPI'
 import { useNavigate } from "react-router-dom";
+import { setCredentials } from '../features/authSlice'
+import { useDispatch } from 'react-redux'
+
 
 
 
 export default function SignUpGoogle() {
+
+    const dispatch = useDispatch()
     const buttonDiv = useRef(null)
     const [signUpUserGoogle] = useAddUserSignUpMutation()
     const [signInUserGoogle] = useAddUserSignInMutation()
@@ -30,10 +35,15 @@ export default function SignUpGoogle() {
     localStorage.removeItem('user');
     localStorage.setItem('user', JSON.stringify(data));
     
-    navigate('/cities')
-
     signUpUserGoogle(data)
-    signInUserGoogle(data)
+    try {
+      let res = await signInUserGoogle(data)
+      dispatch(setCredentials(res.data.response.user))
+      localStorage.setItem('token',res.data.response.token)
+    } catch (error) {
+      console.log(error)
+    }
+    navigate('/cities')
     }
 
     

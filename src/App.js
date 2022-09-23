@@ -10,6 +10,8 @@ import EditCity from './pages/EditCity';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import Itineraries from './pages/Itineraries'
+import CreateNewAdmin from './pages/CreateNewAdmin'
+import Profile from './pages/Profile'
 function App() {
   return (
     <div>
@@ -17,6 +19,8 @@ function App() {
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<Welcome />} />
+          <Route path="/createAdmin" element={<CreateNewAdmin />} />
+          <Route path="/Profile" element={<Profile />} />
           <Route path="/details" element={<DetailsPage />} />
           <Route path="/cities" element={<Cities />} />
           <Route path="/auth/signin" element={<SignIn />} />

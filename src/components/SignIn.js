@@ -2,11 +2,17 @@ import React, { useEffect,useState } from 'react'
 import {useAddUserSignInMutation} from '../features/citiesAPI'
 import SignInGoogle from './SignInGoogle'
 import Swal from 'sweetalert2'
+import { useDispatch } from 'react-redux'
+import { setCredentials } from '../features/authSlice'
+import { useNavigate } from "react-router-dom";
+
 export default function SignIn() {
 
-let [mail,setEmail]=useState()
-let [password,setPassword]=useState()
-let [user,setUser]=useState()
+const navigate = useNavigate()
+const dispatch = useDispatch()
+const [mail,setEmail]=useState()
+const [password,setPassword]=useState()
+const [user,setUser]=useState()
 
 
 
@@ -34,7 +40,7 @@ useEffect(()=>{
 
 const [signInUser] = useAddUserSignInMutation()
 
-const handleSubmit = function(e){
+async function handleSubmit (e) {
     e.preventDefault()
     if(user.mail.includes('@')===false){
         Swal.fire({
@@ -51,8 +57,16 @@ const handleSubmit = function(e){
         })
 
     }else{
-        
-        signInUser(user)
+
+    try {
+        let res = await signInUser(user)
+        dispatch(setCredentials(res.data.response.user))
+        localStorage.setItem('token',res.data.response.token)
+        navigate('/cities') 
+    }catch(err){
+        console.error(err)
+    }
+
 
        Swal.fire({
         icon:'success',

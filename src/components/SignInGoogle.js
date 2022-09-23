@@ -2,11 +2,16 @@ import React, { useEffect, useRef } from 'react'
 import { useAddUserSignInMutation } from '../features/citiesAPI'
 import * as jose from 'jose'
 import { useNavigate } from "react-router-dom";
+import { setCredentials } from '../features/authSlice'
+import { useDispatch } from 'react-redux'
 
 export default function SignInGoogle() {
   const buttonDiv = useRef(null)
   const [signInUserGoogle] = useAddUserSignInMutation()
   const navigate = useNavigate();
+  const dispatch = useDispatch()
+  
+  
 
 
   async function handleCredentialResponse(response) {
@@ -18,13 +23,10 @@ export default function SignInGoogle() {
       photo: userObj.picture,
       mail: userObj.email,
       password: userObj.sub,
-      role: 'user',
       from: 'google'
     }
     try {
       let res = await signInUserGoogle(data)
-      console.log(res);
-      localStorage.setItem('token', res.data.response.token)
     } catch (error) {
       console.log(error)
     }
@@ -42,10 +44,9 @@ export default function SignInGoogle() {
            buttonDiv.current,
             { theme: "outline", size: "large" }  // customization attributes
           );
-
+        },[])
         
-
-    },[])
+        
   return (
     <div>
         <div ref={buttonDiv}>
