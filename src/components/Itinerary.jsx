@@ -5,16 +5,14 @@ import Comments from './Comments';
 import Activity from './Activities'
 import { useGetIdItinerariesQuery } from '../features/citiesAPI';
 import Like from './Like';
-import { useEffect } from 'react';
-import * as jose from 'jose'
+import { useSelector } from 'react-redux'
 
 const Itinerary = () => {
 
-  const [itinerary, setItinerary] = useState()
+  const id = useSelector(state => state.auth.id)
+
   const [visibility, setVisibility] = useState(false)
   const queryString = window.location.search.replace('?', '');
-  let url = `http://localhost:4000/itineraries/city/${queryString}`
-
   const [clicked, setClicked] = useState(false)
 
   function handelVisibility(e) {
@@ -28,18 +26,30 @@ const Itinerary = () => {
   }
 
 
+  const {
+    data: elem,
+    error,
+    isLoading,
+    isSuccess,
+    isFailed,
+  } = useGetIdItinerariesQuery(queryString)
 
-  const { data: elem } = useGetIdItinerariesQuery(queryString)
+  let data = []
+  if (isLoading) {
+    data = []
+  } else if (isSuccess) {
+    data = elem.response
+  } else if (isFailed) {
+    data = []
+    console.log(error)
+  };
 
-  useEffect(() => {
-    if (elem) {
-      setItinerary(elem)
-    }
-  }, [elem])
 
-  let userId = jose.decodeJwt(localStorage.getItem('token'))
+  console.log(data);
+  
 
   const cardItinerary = (data) => {
+    
     return (
       <div className="card-itinerary">
         <div className="title-itinerary">
@@ -48,11 +58,11 @@ const Itinerary = () => {
         <div className='text'>
           <div className="container-itineraryCreator">
             <div className="creator-img">
-              <img className="creator-img" src={data.user.photo} alt={data.user.name} />
+              <img className="creator-img" src={data?.user?.photo} alt={data?.user?.name} />
             </div>
             <div className="creator-data">
-              <p>{data.user.name} {data.user.lastName}</p>
-              <p>{data.user.mail}</p>
+              <p>{data?.user?.name} {data?.user?.lastName}</p>
+              <p>{data?.user?.mail}</p>
             </div>
           </div>
           <div className="box-data">
@@ -63,7 +73,7 @@ const Itinerary = () => {
               <p>🕐{data.duration}hr</p>
             </div>
             <div className="data-container">
-              <Like like={data.likes} itinerary={data._id} userId={userId.id} />
+              <Like like={data.likes} itinerary={data._id} userId={id} />
             </div>
             <div className="tags-container">
               <p>Tags:</p>
@@ -87,7 +97,8 @@ const Itinerary = () => {
 
   return (
     <div>
-      {elem ? elem.response.map(cardItinerary) : ''}
+      {/* {elem ? elem.response.map(cardItinerary) : ''} */}
+      {data.map(e => cardItinerary(e))}
     </div>
   );
 }
