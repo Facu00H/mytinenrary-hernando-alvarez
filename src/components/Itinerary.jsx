@@ -6,6 +6,7 @@ import Activity from './Activities'
 import { useGetIdItinerariesQuery } from '../features/citiesAPI';
 import Like from './Like';
 import { useEffect } from 'react';
+import * as jose from 'jose'
 
 const Itinerary = () => {
 
@@ -36,6 +37,8 @@ const Itinerary = () => {
     }
   }, [elem])
 
+  let userId = jose.decodeJwt(localStorage.getItem('token'))
+
   const cardItinerary = (data) => {
     return (
       <div className="card-itinerary">
@@ -60,8 +63,7 @@ const Itinerary = () => {
               <p>🕐{data.duration}hr</p>
             </div>
             <div className="data-container">
-              <Like like={data.likes} itinerary={data._id} />
-              {console.log(data.likes.length)}
+              <Like like={data.likes} itinerary={data._id} userId={userId.id} />
             </div>
             <div className="tags-container">
               <p>Tags:</p>
