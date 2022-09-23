@@ -36,17 +36,21 @@ const Card = () => {
     isSuccess,
     isFailed,
   } = useGetAllCitiesQuery(query);
-  console.log(query)
   
   let filter = []
   if(isLoading){
     filter = []
   }else if(isSuccess){
     filter = cities.response
+    if(filter === []){
+      filter = []
+    }
   }else if(isFailed){
-    filter = []
+    filter = undefined
     console.log(error)
   };
+
+  console.log(filter)
   
   const handleInput = (e) => {
     setValue(e.target.value.trim().charAt(0).toUpperCase() + e.target.value.slice(1))
@@ -102,7 +106,7 @@ const Card = () => {
       </div>
     </div>
     <div className="container">
-      {filter.map(card)}
+      {filter.length !== 0 ? filter.map(card) : <div>Search not found</div>}
     </div>
     </>
   );
