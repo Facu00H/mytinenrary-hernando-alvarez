@@ -9,7 +9,6 @@ import * as jose from 'jose'
 
 const Comments = (props) => {
 
-    console.log(props)
     const [comments, setComments] = useState([])
     const [create, setCreate] = useState(false)
     const [show, setShow] = useState(false)
@@ -55,7 +54,6 @@ const Comments = (props) => {
     let tokenDecoded = jose.decodeJwt(localStorage.getItem('token'))
 
     const cardComment = (data) => {
-        console.log(tokenDecoded.id);
         if (tokenDecoded.id === data.user._id) {
             return (
                 <div className="comments-container">
