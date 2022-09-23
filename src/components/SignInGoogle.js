@@ -28,9 +28,6 @@ export default function SignInGoogle() {
     }
     try {
       let res = await signInUserGoogle(data)
-      console.log(res);
-      dispatch(setCredentials(res.data.response.user))
-      localStorage.setItem('token',res.data.response.token)
     } catch (error) {
       console.log(error)
     }
@@ -48,10 +45,9 @@ export default function SignInGoogle() {
            buttonDiv.current,
             { theme: "outline", size: "large" }  // customization attributes
           );
-
+        },[])
         
-
-    },[])
+        
   return (
     <div>
         <div ref={buttonDiv}>

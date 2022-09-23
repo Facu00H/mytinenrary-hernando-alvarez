@@ -1,14 +1,15 @@
 import React from 'react';
-import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import '../styles/Itinerary.css'
 import Comments from './Comments';
 import Activity from './Activities'
 import { useGetIdItinerariesQuery } from '../features/citiesAPI';
+import Like from './Like';
+import { useEffect } from 'react';
 
 const Itinerary = () => {
 
-  const [itinerary, setItinerary] = useState([])
+  const [itinerary, setItinerary] = useState()
   const [visibility, setVisibility] = useState(false)
   const queryString = window.location.search.replace('?', '');
   let url = `http://localhost:4000/itineraries/city/${queryString}`
@@ -27,12 +28,14 @@ const Itinerary = () => {
 
 
 
-  const {
-    data:elem,
+  const { data: elem } = useGetIdItinerariesQuery(queryString)
 
-} = useGetIdItinerariesQuery(queryString)
+  useEffect(() => {
+    if (elem) {
+      setItinerary(elem)
+    }
+  }, [elem])
 
-console.log(elem)
   const cardItinerary = (data) => {
     return (
       <div className="card-itinerary">
@@ -45,19 +48,20 @@ console.log(elem)
               <img className="creator-img" src={data.user.photo} alt={data.user.name} />
             </div>
             <div className="creator-data">
-              <p>Name: {data.user.name} {data.user.lastName}</p>
-              <p>Mail: {data.user.mail}</p>
+              <p>{data.user.name} {data.user.lastName}</p>
+              <p>{data.user.mail}</p>
             </div>
           </div>
           <div className="box-data">
             <div className="data-container">
-              <p>Price: {data.price}$</p>
+              <p>💲{data.price}</p>
             </div>
             <div className="data-container">
-              <p>Duration: {data.duration}hr</p>
+              <p>🕐{data.duration}hr</p>
             </div>
             <div className="data-container">
-              <p>Likes: {data.likes}</p>
+              <Like like={data.likes} itinerary={data._id} />
+              {console.log(data.likes.length)}
             </div>
             <div className="tags-container">
               <p>Tags:</p>
@@ -81,7 +85,7 @@ console.log(elem)
 
   return (
     <div>
-      {elem?elem.response.map(cardItinerary):''}
+      {elem ? elem.response.map(cardItinerary) : ''}
     </div>
   );
 }
