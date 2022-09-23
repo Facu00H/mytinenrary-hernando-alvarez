@@ -9,7 +9,7 @@ import Like from './Like';
 import { useSelector } from 'react-redux'
 
 const Itinerary = () => {
-const [deleItiner]=useRemoveItineraryMutation()
+  const [deleItiner] = useRemoveItineraryMutation()
   const id = useSelector(state => state.auth.id)
   const role = useSelector(state => state.auth.role)
 
@@ -49,22 +49,24 @@ const [deleItiner]=useRemoveItineraryMutation()
 
   console.log(data);
 
-  const handleDelete =(e)=>{
+  const handleDelete = (e) => {
     let remove = (e.target.value)
-    if(role === 'admin'){
+    if (role === 'admin') {
       deleItiner(remove)
     }
 
   }
-  
-  
+
+
   const cardItinerary = (data) => {
-    
+
     return (
       <div className="card-itinerary">
-        <button onClick={handleDelete} value={data._id}>X</button>
         <div className="title-itinerary">
           <h3>{data.name}</h3>
+          <div className="delete-itinerary-button-container">
+            <button className='delete-itinerary-button' onClick={handleDelete} value={data._id}><img src={'./assets/svg/bx-trash.svg'} /></button>
+          </div>
         </div>
         <div className='text'>
           <div className="container-itineraryCreator">
@@ -108,7 +110,6 @@ const [deleItiner]=useRemoveItineraryMutation()
 
   return (
     <div>
-      {/* {elem ? elem.response.map(cardItinerary) : ''} */}
       {data.map(e => cardItinerary(e))}
     </div>
   );
