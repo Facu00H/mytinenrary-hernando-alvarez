@@ -1,96 +1,82 @@
-.card-itinerary{
-  border:1px solid black;
-  width:90%;
+.card-itinerary {
+  border: 1px solid black;
+  width: 90%;
   margin: auto;
-  border-radius:1rem;
-  overflow:hidden;
+  border-radius: 1rem;
+  overflow: hidden;
   margin: 4rem auto;
-  box-shadow: -12px 10px 40px 0px rgba(0,0,0,0.45);
-  -webkit-box-shadow: -12px 10px 40px 0px rgba(0,0,0,0.45);
-  -moz-box-shadow: -12px 10px 40px 0px rgba(0,0,0,0.45);
+  box-shadow: -12px 10px 40px 0px rgba(0, 0, 0, 0.45);
+  -webkit-box-shadow: -12px 10px 40px 0px rgba(0, 0, 0, 0.45);
+  -moz-box-shadow: -12px 10px 40px 0px rgba(0, 0, 0, 0.45);
 }
 
-.creator-img{
-  width:75px;
-  height:75px;
-  border-radius:100%;
+.creator-img {
+  width: 75px;
+  height: 75px;
+  border-radius: 100%;
 }
 
-.container-itineraryCreator{
+.container-itineraryCreator {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin:1rem 0;
+  margin: 1rem 0;
   gap: 1rem;
 }
 
-.box-data{
+.box-data {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  margin-left:1rem;
+  margin-left: 1rem;
 }
 
-.title-itinerary{
+.title-itinerary {
   display: flex;
-  justify-content:center;
-  align-items:center;
-  color:white;
-  background-color:black;
+  justify-content: space-around;
+  align-items: center;
+  color: white;
+  background-color: black;
   padding: 0.5rem 0;
-  width:100%;
+  width: 100%;
 }
 
-.ButtonItineraries{
-  border: none;
-  font-size: 15px;
-  background-color: rgba(255, 255, 255, 0);
-  cursor:pointer;
-  padding:10px;
-  margin-left: 80%;
-  opacity: 0.7;
- 
-}
-.ButtonItineraries:hover{
-  opacity: 1;
-}
-
-.tags-container{
+.tags-container {
   display: flex;
   gap: 0.5rem;
 }
 
-.btn-container{
+.btn-container {
   width: 100%;
-  height:3rem;
+  height: 3rem;
   display: flex;
-  justify-content:center;
+  justify-content: center;
   align-items: center;
 }
 
-.btn-seeMore{
+.btn-seeMore {
   border: 1px solid black;
   width: 35%;
   display: flex;
   align-items: center;
-  justify-content:center;
-  height:2rem;
+  justify-content: center;
+  height: 2rem;
   border-radius: 1rem;
   font-weight: bold;
   cursor: pointer;
 }
 
-.btn-seeMore:hover{
+.btn-seeMore:hover {
   font-size: 1.1rem;
 }
 
-.itinerary-img{
+.itinerary-img {
   width: 90%;
-  height:300px;
+  height: 300px;
   display: flex;
-  justify-content:center;
-  align-items:center;
+  justify-content: center;
+  align-items: center;
 }
 
 .itinerary-photo {
@@ -104,6 +90,20 @@
   display: none;
 }
 
+.delete-itinerary-button {
+  background: none;
+  border: 0;
+  background-color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.delete-itinerary-button:hover {
+  opacity: 0.7;
+  transition: 0.3s;
+}
+
 @media (min-width:320px) {
   .itinerary-photo {
     max-width: 300px;
@@ -115,32 +115,32 @@
 }
 
 @media (min-width:768px) {
-  .container-itineraryCreator{
+  .container-itineraryCreator {
     justify-content: flex-start;
     margin-left: 1rem;
   }
 
-  .box-data{
-    flex-direction:row;
-    align-items:center;
+  .box-data {
+    flex-direction: row;
+    align-items: center;
     justify-content: center;
   }
 }
 
-@media (min-width:1024px){
-  .card-itinerary{
+@media (min-width:1024px) {
+  .card-itinerary {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    width:70%;
+    width: 70%;
   }
 
-  .text{
+  .text {
     width: 40%;
     margin: 1rem 0;
   }
 
-  .itinerary-img{
+  .itinerary-img {
     width: 40%;
     margin: 1rem 0;
   }
