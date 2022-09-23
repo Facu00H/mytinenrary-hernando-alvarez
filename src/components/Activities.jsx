@@ -2,13 +2,14 @@ import axios from 'axios';
 import React from 'react'
 import { useEffect, useState } from 'react';
 import '../styles/Activity.css'
+import APIurl from '../APIBack'
 
 function Activity(props) {
     
     const [activities, setActivities] = useState([])
 
     useEffect(() => {
-        axios.get(`http://localhost:4000/activities/${props.itinerary}`)
+        axios.get(`${APIurl}/${props.itinerary}`)
             .then(res => setActivities(res.data.response))
             .catch(err => console.error(err))
     }, [props.itinerary])

@@ -33,7 +33,6 @@ export default function ModalCreateComment({ children, onClose }) {
   const handleSubmit = (e) => {
     e.preventDefault()
     //mandarlo al controlador create
-    console.log(edit)
 
     if (edit.comment.length > 300) {
       Swal.fire({

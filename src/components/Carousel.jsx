@@ -4,6 +4,7 @@ import '../styles/Carousel.css';
 import Arrow from './Arrow';
 import { useEffect,useState } from 'react';
 import {Link as LinkRouter} from 'react-router-dom'
+import APIurl from '../APIBack'
 
 
 export default function Carousel() {
@@ -11,7 +12,7 @@ export default function Carousel() {
   const [cities, setCities] = useState([])
 
   useEffect(() => {
-    axios.get('http://localhost:4000/cities/?city=all')
+    axios.get(`${APIurl}/cities/?city=all`)
     .then( res => setCities(res.data.response))
     .catch( err => console.error(err))
   }, [])

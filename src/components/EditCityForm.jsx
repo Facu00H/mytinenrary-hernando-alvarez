@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { useState, useEffect } from 'react'
 import Swal from 'sweetalert2';
+import APIurl from '../APIBack'
 const EditCityForm = () => {
   const [ bd, setBd ] = useState([])
   const [ citySelected, setCitySelected ] = useState('')
@@ -13,7 +14,7 @@ const EditCityForm = () => {
     fundation: city.fundation,
   }) 
 
-  let url = `http://localhost:4000/cities/${query}`
+  let url = `${APIurl}/cities/${query}`
 
   useEffect(() => {
     if(citySelected !== ""){
@@ -23,7 +24,7 @@ const EditCityForm = () => {
   }, [citySelected])
 
   useEffect(() => {
-    axios.get('http://localhost:4000/cities/?city=all')
+    axios.get(`${APIurl}/cities/?city=all`)
       .then(res => setBd(res.data.response))
       .catch(err => console.error(err))
   }, [])
@@ -59,7 +60,7 @@ const EditCityForm = () => {
     }else{
       
             axios.patch(url, formValues)
-              .then((response) => console.log(response))
+              .then((response) => {})
               .catch((error) => console.log(error))
 
               Swal.fire({

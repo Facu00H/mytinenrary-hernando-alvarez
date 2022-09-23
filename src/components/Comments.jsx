@@ -6,6 +6,7 @@ import ModalCreateComment from './Modals/ModalCreateComment'
 import ModalEditComment from './Modals/ModalEditComment'
 import { useRemoveCommentMutation } from '../features/citiesAPI'
 import { useSelector } from 'react-redux'
+import APIurl from '../APIBack'
 
 const Comments = (props) => {
 
@@ -21,7 +22,6 @@ const Comments = (props) => {
 
 
     const userLocal = localStorage.getItem('user')
-    console.log(userLocal)
     //obtener id de usuario de bsdd para comparar y ver que mstrar
     //mandar el nombre ,id y foto por props y utilizarlo en el modalCreate
 
@@ -47,14 +47,14 @@ const Comments = (props) => {
 
 
     useEffect(() => {
-        axios.get(`http://localhost:4000/comments/itinerary/${props.itinerary}`)
+        axios.get(`${APIurl}/comments/itinerary/${props.itinerary}`)
             .then(res => setComments(res.data.response))
-            .catch(err => console.log(err))
+            .catch(err => console.error(err))
     }, [props.itinerary])
 
 
     const cardComment = (data) => {
-        console.log(data)
+
         if (id === data.user._id || role === 'admin') {
             return (
                 <div className="comments-container">

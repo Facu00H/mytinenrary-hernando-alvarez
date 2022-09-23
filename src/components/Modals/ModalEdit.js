@@ -23,7 +23,6 @@ const [edit,setEdit]=useState()
       duration:duration,
       tags:tags
     }
-    console.log(editItiner)
     setEdit(editItiner)
 
   },[elemento.id,elemento.user,elemento.likes,elemento.cityId,price,duration,tags])
@@ -64,7 +63,6 @@ const [edit,setEdit]=useState()
         })
 
         }
-        console.log(edit)
         //mandarlo al controlador update
       editItinerary(edit)
       .unwrap()

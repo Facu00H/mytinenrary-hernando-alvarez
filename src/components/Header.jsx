@@ -16,11 +16,6 @@ const Header = () => {
   const logged = useSelector(state => state.auth.logged)
   const [data, setData] = useState({role: 'guest'})
 
-  console.log(user)
-  console.log(role)
-  console.log(logged)
-
-
   useEffect(() => {
     if(localStorage.getItem('token')){
       const userData = jose.decodeJwt(localStorage.getItem('token'))
@@ -39,10 +34,9 @@ const Header = () => {
   const navItems = [
     {name: "Home", URL:"/"},
     {name: "Cities", URL:"/cities"},
-    {name: "Itineraries", URL:"/itineraries/user"}
   ]
 
-  data.role !== "guest" && navItems.push({name: "New City", URL:"/newcity"}, {name: "Edit city", URL:"/editcity"})
+  data.role !== "guest" && navItems.push({name: "New City", URL:"/newcity"},{name: "Itineraries", URL:"/itineraries/user"}, {name: "Edit city", URL:"/editcity"})
 
 
   const generateBtn = (item) => (
