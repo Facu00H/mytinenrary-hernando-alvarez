@@ -23,7 +23,7 @@ const EditCityForm = () => {
   }, [citySelected])
 
   useEffect(() => {
-    axios.get('http://localhost:4000/cities')
+    axios.get('http://localhost:4000/cities/?city=all')
       .then(res => setBd(res.data.response))
       .catch(err => console.error(err))
   }, [])
