@@ -59,51 +59,103 @@ const [deleItiner]=useRemoveItineraryMutation()
   
   
   const cardItinerary = (data) => {
-    
-    return (
-      <div className="card-itinerary">
-        <button onClick={handleDelete} value={data._id}>X</button>
-        <div className="title-itinerary">
-          <h3>{data.name}</h3>
-        </div>
-        <div className='text'>
-          <div className="container-itineraryCreator">
-            <div className="creator-img">
-              <img className="creator-img" src={data?.user?.photo} alt={data?.user?.name} />
+      if(role==='admin'){
+
+        return (
+          <div className="card-itinerary">
+            <button className='ButtonItineraries' onClick={handleDelete} value={data._id}>X</button>
+            <div className="title-itinerary">
+              <h3>{data.name}</h3>
             </div>
-            <div className="creator-data">
-              <p>{data?.user?.name} {data?.user?.lastName}</p>
-              <p>{data?.user?.mail}</p>
+            <div className='text'>
+              <div className="container-itineraryCreator">
+                <div className="creator-img">
+                  <img className="creator-img" src={data?.user?.photo} alt={data?.user?.name} />
+                </div>
+                <div className="creator-data">
+                  <p>{data?.user?.name} {data?.user?.lastName}</p>
+                  <p>{data?.user?.mail}</p>
+                </div>
+              </div>
+              <div className="box-data">
+                <div className="data-container">
+                  <p>💲{data.price}</p>
+                </div>
+                <div className="data-container">
+                  <p>🕐{data.duration}hr</p>
+                </div>
+                <div className="data-container">
+                  <Like like={data.likes} itinerary={data._id} userId={id} />
+                </div>
+                <div className="tags-container">
+                  <p>Tags:</p>
+                  {data.tags.map(tag => <p>#{tag}</p>)}
+                </div>
+              </div>
+            </div>
+            <div className="itinerary-img">
+              <img src={data.photo} alt={data.name} className='itinerary-photo' />
+            </div>
+            <div className="btn-container">
+              <div className='btn-seeMore' onClick={handelVisibility} id={data._id} value={visibility}>See more!</div>
+            </div>
+            <div className={clicked === false ? 'itinerary-activities-comments' : null}>
+              <Activity itinerary={data._id} />
+              <Comments itinerary={data._id} />
             </div>
           </div>
-          <div className="box-data">
-            <div className="data-container">
-              <p>💲{data.price}</p>
+        )
+
+      }else{
+        return (
+          <div className="card-itinerary">
+            <div className="title-itinerary">
+              <h3>{data.name}</h3>
             </div>
-            <div className="data-container">
-              <p>🕐{data.duration}hr</p>
+            <div className='text'>
+              <div className="container-itineraryCreator">
+                <div className="creator-img">
+                  <img className="creator-img" src={data?.user?.photo} alt={data?.user?.name} />
+                </div>
+                <div className="creator-data">
+                  <p>{data?.user?.name} {data?.user?.lastName}</p>
+                  <p>{data?.user?.mail}</p>
+                </div>
+              </div>
+              <div className="box-data">
+                <div className="data-container">
+                  <p>💲{data.price}</p>
+                </div>
+                <div className="data-container">
+                  <p>🕐{data.duration}hr</p>
+                </div>
+                <div className="data-container">
+                  <Like like={data.likes} itinerary={data._id} userId={id} />
+                </div>
+                <div className="tags-container">
+                  <p>Tags:</p>
+                  {data.tags.map(tag => <p>#{tag}</p>)}
+                </div>
+              </div>
             </div>
-            <div className="data-container">
-              <Like like={data.likes} itinerary={data._id} userId={id} />
+            <div className="itinerary-img">
+              <img src={data.photo} alt={data.name} className='itinerary-photo' />
             </div>
-            <div className="tags-container">
-              <p>Tags:</p>
-              {data.tags.map(tag => <p>#{tag}</p>)}
+            <div className="btn-container">
+              <div className='btn-seeMore' onClick={handelVisibility} id={data._id} value={visibility}>See more!</div>
+            </div>
+            <div className={clicked === false ? 'itinerary-activities-comments' : null}>
+              <Activity itinerary={data._id} />
+              <Comments itinerary={data._id} />
             </div>
           </div>
-        </div>
-        <div className="itinerary-img">
-          <img src={data.photo} alt={data.name} className='itinerary-photo' />
-        </div>
-        <div className="btn-container">
-          <div className='btn-seeMore' onClick={handelVisibility} id={data._id} value={visibility}>See more!</div>
-        </div>
-        <div className={clicked === false ? 'itinerary-activities-comments' : null}>
-          <Activity itinerary={data._id} />
-          <Comments itinerary={data._id} />
-        </div>
-      </div>
-    )
+        )
+
+
+
+
+      }
+
   }
 
   return (

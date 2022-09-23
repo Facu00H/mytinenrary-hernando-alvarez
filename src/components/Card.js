@@ -87,22 +87,23 @@ const Card = () => {
     <>
     <div className='input-container'>
       <div className='filter-container'>
-        <div>
-          <p>Filter by:</p>
-          <label>
+        <div className='filterCheck'>
+          <p className='labelInp'>Filter by:</p>
+          <label className='labelInp'>
             <input type="radio" name="cityOrCountry" onClick={CityorCountry} value="city"/> City
           </label>
-          <label>
+          <label className='labelInp'>
             <input type="radio" name="cityOrCountry" onClick={CityorCountry} value="country"/> Country
           </label>
-        </div>
-        <input className='filter-text' onInput={handleInput} placeholder={cityOrCountry === 'city' ? 'Search City...': 'Search Country...'}></input>
-        <label>
+          <label className='labelInp'>
           <input type="radio" name="Alphabet" onClick={alphabetFilter} value="AZ"/> A-Z
         </label>
-        <label>
+        <label className='labelInp'>
           <input type="radio" name="Alphabet" onClick={alphabetFilter} value="ZA"/> Z-A
         </label>
+        </div>
+        <input className='filter-text' onInput={handleInput} placeholder={cityOrCountry === 'city' ? 'Search City...': 'Search Country...'}></input>
+
       </div>
     </div>
     <div className="container">
