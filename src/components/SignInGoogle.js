@@ -27,6 +27,9 @@ export default function SignInGoogle() {
     }
     try {
       let res = await signInUserGoogle(data)
+      dispatch(setCredentials(res.data.response.user))
+      localStorage.setItem('token',res.data.response.token)
+      navigate('/cities') 
     } catch (error) {
       console.log(error)
     }
