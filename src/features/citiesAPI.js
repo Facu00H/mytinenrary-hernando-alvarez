@@ -57,7 +57,7 @@ const citiesAPI = createApi({
         body: payload,
       }),
     }),
-    /////////////////////////////////////////////////////Details
+    /////////////////////////////////////////////////////itineraries
     CreateItinerary: builder.mutation({
       query: (payload) => ({
         url: '/itineraries',
@@ -65,7 +65,7 @@ const citiesAPI = createApi({
         body: payload,
       }),
     }),
-    //////////////////////////////////////////itineraries
+
     EditItinerary: builder.mutation({
       query: (payload) => ({
         url: `/itineraries/${payload.id}`,
@@ -73,37 +73,38 @@ const citiesAPI = createApi({
         body: payload,
       }),
     }),
+    
     RemoveItinerary: builder.mutation({
       query: (payload) => ({
         url: `/itineraries/${payload}`,
         method: 'DELETE',
       }),
     }),
-    //////////////////////////////////////////////comment
-    EditItinerary: builder.mutation({
-      query: (payload) => ({
-        url: `/comment/${payload.id}`,
-        method: 'PATCH',
-        body: payload,
-        headers: { "Authorization": `Bearer ${localStorage.getItem("token")}` }
-      }),
-    }),
-    RemoveItinerary: builder.mutation({
-      query: (payload) => ({
-        url: `/comment/${payload}`,
-        method: 'DELETE',
-        headers: { "Authorization": `Bearer ${localStorage.getItem("token")}` }
-      }),
-    }),
+    //////////////////////////////////////////////itineraries
+    // EditItinerary: builder.mutation({
+    //   query: (payload) => ({
+    //     url: `/itineraries/${payload.id}`,
+    //     method: 'PATCH',
+    //     body: payload,
+    //     headers: { "Authorization": `Bearer ${localStorage.getItem("token")}` }
+    //   }),
+    // }),
+    // RemoveItinerary: builder.mutation({
+    //   query: (payload) => ({
+    //     url: `/itineraries/${payload}`,
+    //     method: 'DELETE',
+    //     headers: { "Authorization": `Bearer ${localStorage.getItem("token")}` }
+    //   }),
+    // }),
 
-    CreateItinerary: builder.mutation({
-      query: (payload) => ({
-        url: '/comment',
-        method: 'POST',
-        body: payload,
-        headers: { "Authorization": `Bearer ${localStorage.getItem("token")}` }
-      }),
-    }),
+    // CreateItinerary: builder.mutation({
+    //   query: (payload) => ({
+    //     url: '/itineraries',
+    //     method: 'POST',
+    //     body: payload,
+    //     headers: { "Authorization": `Bearer ${localStorage.getItem("token")}` }
+    //   }),
+    // }),
     ///////////////////////////////////////////////like
     AddLike: builder.mutation({
       query: (payload) => ({
