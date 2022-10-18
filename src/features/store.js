@@ -1,15 +1,28 @@
 import { configureStore } from '@reduxjs/toolkit'
 import citiesAPI from './citiesAPI'
-import authReducer from './authSlice'
+import authSlice from './authSlice'
+import storage from 'redux-persist/lib/storage'
+import { persistReducer } from 'redux-persist'
 
-export default configureStore({
+
+const persistUser = {
+    key: 'root',
+    storage,
+    version: 1,
+}
+const persitedUSer = persistReducer(persistUser, authSlice)
+
+const store = configureStore({
   reducer: {
     [citiesAPI.reducerPath] : citiesAPI.reducer,
-    auth: authReducer,
+    auth: persitedUSer,
   },
   // Adding the api middleware enables caching, invalidation, polling,
   // and other useful features of `rtk-query`.
   middleware: (getDefaultMiddleware) =>
   getDefaultMiddleware().concat(citiesAPI.middleware),
 })
+
+
+export default store
 
