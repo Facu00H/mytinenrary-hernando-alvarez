@@ -9,7 +9,7 @@ import {useGetAllCitiesQuery} from '../features/citiesAPI'
 const Card = () => {
   
   const [order, setOrder] = useState('')
-  const [value, setValue] = useState('')
+  const [value, setValue] = useState('all')
   const [cityOrCountry, setCityOrCountry] = useState('city')
   const [query, setQuery] = useState('');
 

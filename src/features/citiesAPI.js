@@ -117,7 +117,7 @@ const citiesAPI = createApi({
     ///////////////////////////////////////////////comment
     EditComment: builder.mutation({
       query: (payload) => ({
-        url: `comments/${payload.id}`,
+        url: `/comments/${payload.id}`,
         method: 'PATCH',
         body: payload,
         headers: { "Authorization": 'Bearer ' + localStorage.getItem("token") }

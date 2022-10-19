@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import Swal from 'sweetalert2'
 import { useCreateItineraryMutation } from '../../features/citiesAPI';
+import { useSelector } from 'react-redux';
+
 export default function ModalCreate({ children, onClose }) {
 
   const [createItinerary] = useCreateItineraryMutation()
-  const userSession = JSON.parse(localStorage.getItem('user'))
+  const userSession = useSelector(state => state.auth.user)
   const [photo, setPhoto] = useState()
   const [duration, setDuration] = useState()
   const [price, setPrice] = useState()
@@ -30,9 +32,9 @@ export default function ModalCreate({ children, onClose }) {
     setName(e.target.value)
 
   }
+  
   const handlePrice = (e) => {
     setPrice(e.target.value)
-
   }
 
 
@@ -49,9 +51,12 @@ export default function ModalCreate({ children, onClose }) {
       duration: duration
     }
 
+    console.log(objCreate)
     setEdit(objCreate)
 
   }, [photo, price, tags, name, duration])
+
+  console.log(userSession)
 
 
 
@@ -95,7 +100,7 @@ export default function ModalCreate({ children, onClose }) {
       <input type='text' onChange={handleName}></input>
 
 
-      <h4 className="createH4">User :   {userSession.name} </h4>
+      <h4 className="createH4"> User: {userSession.name} </h4>
 
 
       <p >City   {children.city} </p>
@@ -106,7 +111,7 @@ export default function ModalCreate({ children, onClose }) {
       <input type='Number' onChange={handlePrice}></input>
 
       <p >Tags  </p>
-      <input type='Number' onChange={handleTags}></input>
+      <input type='text' onChange={handleTags}></input>
       <p >Duration</p>
       <input type='Number' onChange={handleDuration}></input>
       <div className='createButtons'>

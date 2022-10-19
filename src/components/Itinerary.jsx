@@ -10,8 +10,8 @@ import { useSelector } from 'react-redux'
 
 const Itinerary = () => {
   const [deleItiner] = useRemoveItineraryMutation()
-  const id = useSelector(state => state.auth.id)
-  const role = useSelector(state => state.auth.role)
+  const id = useSelector(state => state.auth.user.id)
+  const role = useSelector(state => state.auth.user.role)
 
   const [visibility, setVisibility] = useState(false)
   const queryString = window.location.search.replace('?', '');
@@ -41,6 +41,7 @@ const Itinerary = () => {
     data = []
   } else if (isSuccess) {
     data = elem.response
+    console.log(data[1]._id)
   } else if (isFailed) {
     data = []
     console.log(error)
@@ -48,11 +49,11 @@ const Itinerary = () => {
 
 
   const handleDelete = (e) => {
-    let remove = (e.target.value)
+    let remove = (e.target.id)
     if (role === 'admin') {
-      deleItiner(remove)
+      // deleItiner(remove)t
+      console.log(remove)
     }
-
   }
 
 
@@ -63,17 +64,17 @@ const Itinerary = () => {
         <div className="title-itinerary">
           <h3>{data.name}</h3>
           <div className="delete-itinerary-button-container">
-            <button className='delete-itinerary-button' onClick={handleDelete} value={data._id}><img src={'./assets/svg/bx-trash.svg'} /></button>
+            <button className='delete-itinerary-button'><img src={'./assets/svg/bx-trash.svg'} onClick={handleDelete} id={data} /></button>
           </div>
         </div>
         <div className='text'>
           <div className="container-itineraryCreator">
             <div className="creator-img">
-              <img className="creator-img" src={data?.user?.photo} alt={data?.user?.name} />
+              <img className="creator-img" src={data.user?.photo} alt={data.user?.name} />
             </div>
             <div className="creator-data">
-              <p>{data?.user?.name} {data?.user?.lastName}</p>
-              <p>{data?.user?.mail}</p>
+              <p>{data.user?.name} {data.user?.lastName}</p>
+              <p>{data.user?.mail}</p>
             </div>
           </div>
           <div className="box-data">
@@ -96,7 +97,7 @@ const Itinerary = () => {
           <img src={data.photo} alt={data.name} className='itinerary-photo' />
         </div>
         <div className="btn-container">
-          <div className='btn-seeMore' onClick={handelVisibility} id={data._id} value={visibility}>See more!</div>
+          <div className='btn-seeMore' onClick={handelVisibility} id={data.city._id} value={visibility}>See more!</div>
         </div>
         <div className={clicked === false ? 'itinerary-activities-comments' : null}>
           <Activity itinerary={data._id} />
@@ -108,7 +109,7 @@ const Itinerary = () => {
 
   return (
     <div>
-      {data.map(e => cardItinerary(e))}
+      {isSuccess ? data.map(cardItinerary) : null}
     </div>
   );
 }

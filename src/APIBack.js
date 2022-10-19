@@ -1,3 +1,5 @@
-const APIurl = 'https://mytinerary-enene-back.herokuapp.com';
+const APIurl = 'https://real-puce-fish-wear.cyclic.app';
 
 export default APIurl;
+
+

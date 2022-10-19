@@ -10,18 +10,14 @@ import APIurl from '../APIBack'
 
 const Comments = (props) => {
 
-    const id = useSelector(state => state.auth.id)
-    const role = useSelector(state => state.auth.role)
+    const id = useSelector(state => state.auth.user.id)
+    const role = useSelector(state => state.auth.user.role)
     const [comments, setComments] = useState([])
     const [create, setCreate] = useState(false)
     const [show, setShow] = useState(false)
     const [edit, setEdit] = useState({})
     const [removeComment] = useRemoveCommentMutation()
 
-
-
-
-    const userLocal = localStorage.getItem('user')
     //obtener id de usuario de bsdd para comparar y ver que mstrar
     //mandar el nombre ,id y foto por props y utilizarlo en el modalCreate
 
@@ -66,7 +62,7 @@ const Comments = (props) => {
                     <div className="comments-message-container">
                         <p className='comments-message'>{data.comment}</p>
                     </div>
-                    <div className='comment-edit-delete'>
+                    {id === data.user._id || role === 'admin' ? <div className='comment-edit-delete'>
                         <button className='edit-button' onClick={() => setEdit({
                             id: data.user._id,
                             name: data.user.name,
@@ -74,7 +70,7 @@ const Comments = (props) => {
                             idComment: data._id
                         }) & setShow(true)}><img src={'./assets/svg/bx-edit-alt.svg'}/></button>
                         <button className='delete-button' onClick={handleRemove} value={data._id}><img src={'./assets/svg/bx-trash.svg'} /></button>
-                    </div>
+                    </div> : null}
                 </div>
             )
 
