@@ -1,0 +1,128 @@
+.container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 20px;
+    margin-top: 60px;
+}
+
+
+.ItinerariesUser{
+    display: flex;
+    flex-direction: column;
+    border-radius:1rem;
+    width:305px;
+    height: 300px;
+    box-shadow: -12px 10px 40px 0px rgba(0,0,0,0.45);
+    overflow:hidden;
+    justify-content: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    gap :5px;
+}
+.titleIti{
+    font-style: italic;
+    text-align: center;
+    color: rgb(57, 79, 36);
+}
+.citiItiner{
+    font-style: italic;
+    color: rgb(57, 79, 36);
+    text-align: center;
+}
+.userItiner{
+font-style: italic;
+}
+
+.editIt{
+    display: flex;
+    flex-direction: column;
+    border-radius:1rem;
+    width:305px;
+    height: 420px;
+    box-shadow: -12px 10px 40px 0px rgba(0,0,0,0.45);
+    overflow:hidden;
+    justify-content: center;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    gap :5px
+}
+/*///////////////////////////////////////////////////ModalEdit Start/////////////////////////////////////////////////////////////*/
+.butonEdit{
+    margin-top: 5px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+.save{
+    display: flex;
+    background-color: #0f6233;
+    border: none;
+    color: white;
+    padding: 8px 25px;
+    padding-left: 17%;
+    font-size: 14px;
+    
+    opacity: 0.7;
+    transition: 0.3s;
+    
+    cursor: pointer;
+    border-radius: 10px;
+}
+.save:hover{
+    opacity: 1;
+}
+.close{
+    display: flex;
+    background-color: #be2618;
+    border: none;
+    color: white;
+    padding: 8px 25px;
+    padding-left: 15%;
+    font-size: 14px;
+    
+    opacity: 0.7;
+    transition: 0.3s;
+    
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.close:hover{
+    opacity: 1;
+}
+/*///////////////////////////////////////////////////ModalEdit End/////////////////////////////////////////////////////////////*/
+.buttonDelete{
+cursor: pointer;
+font-size: 20px;
+width: 30px;
+border: none;
+background-color: white;
+opacity: 0.7;
+}
+.buttonDelete:hover{
+    opacity: 1;
+}
+
+
+.buttonEdit{
+margin-top: 7px;
+display: flex;
+background-color: #f4511e;
+border: none;
+color: white;
+padding: 8px 25px;
+padding-left: 47%;
+font-size: 14px;
+
+opacity: 0.7;
+transition: 0.3s;
+
+cursor: pointer;
+border-radius: 10px;
+}
+.buttonEdit:hover{
+    opacity: 1;
+}

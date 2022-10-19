@@ -1,0 +1,81 @@
+/* .main-Sign{
+
+} */
+.form-Sign{
+    border-radius:1rem;
+  
+    width:305px;
+    height: 400px;
+    box-shadow: -12px 10px 40px 0px rgba(0,0,0,0.45);
+    -webkit-box-shadow: -12px 10px 40px 0px rgba(0,0,0,0.45);
+    -moz-box-shadow: -12px 10px 40px 0px rgba(0,0,0,0.45);
+    overflow:hidden;
+    padding:0.5em;
+    font-weight: bold;
+    border: 1px solid black;
+    text-align: center;
+}
+
+.form-SignIn{
+    border-radius:1rem;
+  
+    width:305px;
+    height: 320px;
+    box-shadow: -12px 10px 40px 0px rgba(0,0,0,0.45);
+    -webkit-box-shadow: -12px 10px 40px 0px rgba(0,0,0,0.45);
+    -moz-box-shadow: -12px 10px 40px 0px rgba(0,0,0,0.45);
+    overflow:hidden;
+    padding:0.5em;
+    font-weight: bold;
+    border: 1px solid black;
+    text-align: center;
+
+}
+
+.select-Sign{
+    margin-top: 10px;
+    font-style: italic
+
+}
+.submit-Sign{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    
+    width: 100%;
+
+    
+
+    
+}
+.Sign-container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 80vh;
+    gap: 50px;
+}
+.hSign{
+    font-style: italic;
+    color: rgb(57, 79, 36);
+}
+.button-Sign{
+    opacity: 0.8;
+    margin-top: 16px;
+    cursor: pointer;
+    font-style: italic;
+    font-weight: bold;
+    border-radius:0.5rem;
+    width: 60%;
+    height: 25px;
+    color:rgb(57, 79, 36);
+    background-color: white;
+}
+.button-Sign:hover{
+    opacity: 1;
+}
+.inputs-p{
+    margin-top: 60px;
+}
